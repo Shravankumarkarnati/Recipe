@@ -1,0 +1,37 @@
+.results-container {
+    grid-row: 2/-1;
+    grid-column: 1/2;
+    box-shadow: 0rem 0rem .5rem blanchedalmond;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.results {
+    height: 90%;
+
+    &-btns {
+        padding: 1rem 4rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & button {
+            padding: 1rem;
+            font-size: 1.5rem;
+            border-radius: 10rem;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: rgba($color: white, $alpha: .7);
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
