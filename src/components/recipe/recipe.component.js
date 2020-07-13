@@ -3,7 +3,12 @@ import "./recipe.styles.scss";
 import formatIngrdient from "./recipe.utils";
 
 import { connect } from "react-redux";
-import { changeIngredients } from "../../redux/reducers/results/results.action";
+import {
+  changeIngredients,
+  changeServings,
+} from "../../redux/reducers/results/results.action";
+
+import { addLiked } from "../../redux/reducers/likes/likes.actions";
 
 import { ReactComponent as Cart } from "../../images/supermarket.svg";
 import { ReactComponent as Heart } from "../../images/heart.svg";
@@ -39,10 +44,63 @@ class Recipe extends React.Component {
     changeIngr(this.newIngr);
   }
 
+  handleServingMinus = () => {
+    const {
+      changedIngredients: { ingredients },
+      changedIngredients: { servings },
+      changeServings,
+    } = this.props;
+    const newServings = servings - 1;
+    if (newServings < 1) return;
+    const newIngredients = ingredients.map((cur) => {
+      const newCount = (cur.count * newServings) / servings;
+      return { ...cur, count: newCount };
+    });
+    const newChangedIngredients = {
+      servings: newServings,
+      ingredients: newIngredients,
+    };
+    changeServings(newChangedIngredients);
+  };
+
+  handleServingPlus = () => {
+    const {
+      changedIngredients: { ingredients },
+      changedIngredients: { servings },
+      changeServings,
+    } = this.props;
+    const newServings = servings + 1;
+    const newIngredients = ingredients.map((cur) => {
+      const newCount = (cur.count * newServings) / servings;
+      return { ...cur, count: newCount };
+    });
+    const newChangedIngredients = {
+      servings: newServings,
+      ingredients: newIngredients,
+    };
+    changeServings(newChangedIngredients);
+  };
+
+  handleLike = () => {
+    const {
+      selectedRecipe: { recipe },
+      addLiked,
+    } = this.props;
+    const { title, recipe_id, publisher, image_url } = recipe;
+    const likedRecipe = {
+      recipe_id,
+      title,
+      publisher,
+      image_url,
+    };
+    addLiked(likedRecipe);
+  };
+
   render() {
     const {
       selectedRecipe: { recipe },
-      changedIngredients,
+      changedIngredients: { ingredients: newIngredients },
+      changedIngredients: { servings },
     } = this.props;
     const { image_url, publisher, publisher_url, source_url, title } = recipe;
     return (
@@ -69,9 +127,17 @@ class Recipe extends React.Component {
               <div className="recipe-controller--servings-text">
                 <p>Servings </p>
                 <div className="servings-div">
-                  <Minus className="servings-minus" fill="blue" />{" "}
-                  <span className="servings-count"> 4 </span>{" "}
-                  <Add className="servings-plus" fill="blue" />
+                  <Minus
+                    className="servings-minus"
+                    fill="blue"
+                    onClick={this.handleServingMinus}
+                  />{" "}
+                  <span className="servings-count"> {servings} </span>{" "}
+                  <Add
+                    className="servings-plus"
+                    fill="blue"
+                    onClick={this.handleServingPlus}
+                  />
                 </div>
               </div>
             </div>
@@ -83,15 +149,19 @@ class Recipe extends React.Component {
               </p>
             </div>
             <div className="recipe-controller--heart">
-              <Heart className="recipe-controller--heart-svg" fill="green" />
+              <Heart
+                className="recipe-controller--heart-svg"
+                fill="green"
+                onClick={this.handleLike}
+              />
             </div>
             <div className="recipe-controller--cart">
               <Cart className="recipe-controller--cart-svg" fill="green" />
             </div>
           </div>
           <div className="recipe-main">
-            {changedIngredients
-              ? changedIngredients.map((ing) => (
+            {newIngredients
+              ? newIngredients.map((ing) => (
                   <div className="recipe-main--ingredient" key={ing.ingredient}>
                     <span>{`${parseFloat(ing.count).toFixed(2)}`}</span>
                     {"  "}
@@ -133,6 +203,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeIngr: (ingr) => dispatch(changeIngredients(ingr)),
+    changeServings: (ingrs) => dispatch(changeServings(ingrs)),
+    addLiked: (item) => dispatch(addLiked(item)),
   };
 };
 

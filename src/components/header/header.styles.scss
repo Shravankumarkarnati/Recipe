@@ -75,4 +75,20 @@
             margin-right: 2rem;
         }
     }
+
+    &--heart {
+        position: relative;
+
+
+        &--text {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: .5rem 1rem;
+            border-radius: 50%;
+            background-color: white;
+            color: black;
+            font-size: 2rem;
+        }
+    }
 }

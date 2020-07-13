@@ -45,6 +45,7 @@ class Header extends React.Component {
   };
 
   render() {
+    const { likesCount } = this.props;
     return (
       <div className="header">
         <div className="logo-box">
@@ -67,6 +68,9 @@ class Header extends React.Component {
         <div className="util-box">
           <div className="util-box--heart">
             <Heart className="util-box--heart--svg" />
+            {likesCount ? (
+              <p className="util-box--heart--text">{likesCount}</p>
+            ) : null}
           </div>
           <div className="util-box--cart">
             <Cart className="util-box--cart-svg" />
@@ -77,6 +81,12 @@ class Header extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    likesCount: state.likes.countLikes,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     search: (string) => dispatch(setSearch(string)),
@@ -85,4 +95,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

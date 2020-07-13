@@ -34,3 +34,10 @@ export const changeIngredients = (newIngr) => {
     payload: newIngr,
   };
 };
+
+export const changeServings = (obj) => {
+  return {
+    type: resultsTypes.CHANGE_SERVINGS,
+    payload: obj,
+  };
+};

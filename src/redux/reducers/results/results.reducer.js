@@ -5,7 +5,10 @@ const INITIAL_STATE = {
   results: null,
   pageNum: 1,
   selectedRecipe: null,
-  changedIngredients: null,
+  changedIngredients: {
+    servings: null,
+    ingredients: null,
+  },
 };
 
 const resultsReducer = (state = INITIAL_STATE, action) => {
@@ -24,9 +27,17 @@ const resultsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         selectedRecipe: action.payload,
-        // ingredients: action.payload.ingredients,
       };
     case resultsTypes.CHANGE_INGR:
+      return {
+        ...state,
+        changedIngredients: {
+          servings: 4,
+          ingredients: action.payload,
+        },
+      };
+
+    case resultsTypes.CHANGE_SERVINGS:
       return {
         ...state,
         changedIngredients: action.payload,

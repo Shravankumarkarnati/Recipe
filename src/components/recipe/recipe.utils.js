@@ -18,10 +18,7 @@ class formatIngredient {
       tbsps: "tbsp",
       pounds: "pound",
     };
-    const values = [];
-    for (let [key, value] of Object.entries(sizes)) {
-      values.push(value);
-    }
+    const values = Object.values(sizes);
     this.ingredients.forEach((cur) => {
       const stringSplited = cur
         .toString()

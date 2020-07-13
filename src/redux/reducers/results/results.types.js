@@ -3,6 +3,7 @@ const resultsTypes = {
   CHANGE_PAGE_NUM: "CHANGE_PAGE_NUM",
   SELECTED_RECIPE: "SELECTED_RECIPE",
   CHANGE_INGR: "CHANGE_INGR",
+  CHANGE_SERVINGS: "CHANGE_SERVINGS",
 };
 
 export default resultsTypes;
