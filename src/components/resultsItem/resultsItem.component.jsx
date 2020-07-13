@@ -20,13 +20,21 @@ function ResultItem({ recipe, selectedRecipe }) {
     const selected_recipe_id = parseInt(
       e.target.closest(".results-item").dataset.recipeid
     );
-    selectedRecipe(selected_recipe_id);
+    fetch(`https://forkify-api.herokuapp.com/api/get?rId=${selected_recipe_id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const selected = {
+          id: selected_recipe_id,
+          recipe: data.recipe,
+        };
+        selectedRecipe(selected);
+      });
   };
 
   return (
     <div
       className="results-item"
-      data-recipeid={`${recipe_id - 1}`}
+      data-recipeid={`${recipe_id}`}
       onClick={handleClick}
     >
       <p className="results-item--title">{stringShortner(title)}</p>
@@ -41,7 +49,7 @@ function ResultItem({ recipe, selectedRecipe }) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectedRecipe: (recipe_id) => dispatch(selectRecipe(recipe_id)),
+    selectedRecipe: (recipe) => dispatch(selectRecipe(recipe)),
   };
 };
 

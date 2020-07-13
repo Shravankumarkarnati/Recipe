@@ -4,8 +4,8 @@ import resultsTypes from "./results.types";
 const INITIAL_STATE = {
   results: null,
   pageNum: 1,
-  currentRecipes: null,
   selectedRecipe: null,
+  changedIngredients: null,
 };
 
 const resultsReducer = (state = INITIAL_STATE, action) => {
@@ -24,6 +24,12 @@ const resultsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         selectedRecipe: action.payload,
+        // ingredients: action.payload.ingredients,
+      };
+    case resultsTypes.CHANGE_INGR:
+      return {
+        ...state,
+        changedIngredients: action.payload,
       };
     default:
       return state;
