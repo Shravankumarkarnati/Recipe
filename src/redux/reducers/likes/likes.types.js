@@ -1,5 +1,8 @@
 const likesActionTypes = {
   ADD_LIKED: "ADD_LIKED",
+  REMOVE_LIKED: "REMOVE_LIKED",
+  SET_LIKES_RESULTS: "SET_LIKES_RESULTS",
+  REMOVE_LIKES_RESULTS: "REMOVE_LIKES_RESULTS",
 };
 
 export default likesActionTypes;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./resultsItem.styles.scss";
 
-import { selectRecipe } from "../../redux/reducers/results/results.action.js";
+import { onSelectedRecipe } from "../../redux/reducers/results/results.action.js";
 
 import { connect } from "react-redux";
 
@@ -13,35 +13,22 @@ const stringShortner = (someString) => {
   return someString;
 };
 
-function ResultItem({ recipe, selectedRecipe }) {
-  const { recipe_id, title, image_url, publisher } = recipe;
+function ResultItem({ recipe, onSelectedRecipe }) {
+  const { id, title, image } = recipe;
 
   const handleClick = (e) => {
     const selected_recipe_id = parseInt(
       e.target.closest(".results-item").dataset.recipeid
     );
-    fetch(`https://forkify-api.herokuapp.com/api/get?rId=${selected_recipe_id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const selected = {
-          id: selected_recipe_id,
-          recipe: data.recipe,
-        };
-        selectedRecipe(selected);
-      });
+    onSelectedRecipe(selected_recipe_id, image, title);
   };
 
   return (
-    <div
-      className="results-item"
-      data-recipeid={`${recipe_id}`}
-      onClick={handleClick}
-    >
+    <div className="results-item" data-recipeid={`${id}`} onClick={handleClick}>
       <p className="results-item--title">{stringShortner(title)}</p>
-      <p className="results-item--publisher">{stringShortner(publisher)}</p>
       <div
         className="results-item--image"
-        style={{ backgroundImage: `url(${image_url})` }}
+        style={{ backgroundImage: `url(${image})` }}
       ></div>
     </div>
   );
@@ -49,7 +36,8 @@ function ResultItem({ recipe, selectedRecipe }) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectedRecipe: (recipe) => dispatch(selectRecipe(recipe)),
+    onSelectedRecipe: (id, image, title) =>
+      dispatch(onSelectedRecipe(id, image, title)),
   };
 };
 

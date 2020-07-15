@@ -1,6 +1,8 @@
+$color-black-main: #191C21;
+
 .homepage {
     min-height: 100vh;
-    background: linear-gradient(to right, rgba(green, .3), rgba(blue, .3)), url("../../images/bg-xl.jpg");
+    background: url("../../images/bg-xl.jpg");
     background-position: center;
     background-size: cover;
     position: relative;
@@ -11,16 +13,16 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(to right, rgba(green, .6), rgba(blue, .6)), rgba($color: #fff, $alpha: .6);
+    background: rgba($color-black-main, .9);
     height: 90vh;
-    width: 65vw;
+    width: 75vw;
+    box-shadow: 0rem 0rem 2rem black;
+    border-radius: 2rem;
+    overflow: hidden;
 
     display: grid;
     grid-template-columns: .4fr 1fr;
     grid-template-rows: 15% 85%;
-    box-shadow: 0rem 0rem 2rem black;
-    border-radius: 2rem;
-    overflow: hidden;
 
 
 }

@@ -4,13 +4,16 @@ import MainLogo from "../../images/logo.png";
 
 import { ReactComponent as Cart } from "../../images/supermarket.svg";
 import { ReactComponent as Heart } from "../../images/heart.svg";
-import { ReactComponent as Search } from "../../images/search.svg";
 
 import { setSearch } from "../../redux/reducers/search/search.action";
-import { setResults } from "../../redux/reducers/results/results.action";
-import { changePage } from "../../redux/reducers/results/results.action.js";
+import { onSearchAsync } from "../../redux/reducers/results/results.action";
+import {
+  setLikesToResults,
+  removeLikesFromResults,
+} from "../../redux/reducers/likes/likes.actions";
 
 import { connect } from "react-redux";
+import SearchField from "../searchField/searchField.component";
 
 class Header extends React.Component {
   constructor(props) {
@@ -27,21 +30,23 @@ class Header extends React.Component {
   };
 
   onSearch = async (e) => {
-    const { search, results, changePageNum } = this.props;
-    changePageNum(1);
+    const { search, onSearchAsync } = this.props;
     search(this.state.search);
-    await fetch(
-      `https://forkify-api.herokuapp.com/api/search?q=${this.state.search}`
-    )
-      .then((res) => res.json())
-      .then((data) => data.recipes)
-      .then((rec) => {
-        results(rec);
-        this.setState({
-          search: "",
-        });
-      })
-      .catch((err) => console.log(err));
+    onSearchAsync(this.state.search);
+  };
+
+  handleHeartClick = () => {
+    const {
+      likesCount,
+      setLikes,
+      removeLikes,
+      likes,
+      likesResult,
+    } = this.props;
+
+    if (likesCount) {
+      Object.keys(likesResult).length > 0 ? removeLikes() : setLikes(likes);
+    }
   };
 
   render() {
@@ -51,23 +56,17 @@ class Header extends React.Component {
         <div className="logo-box">
           <img src={MainLogo} alt="logo main" className="logo-main" />
         </div>
-        <div className="search-box">
-          <div className="search-box--input">
-            <input
-              type="text"
-              placeholder="Search for a Recipe"
-              className="search-box--input-search"
-              value={this.state.search}
-              onChange={this.onChange}
-            />
-          </div>
-          <button className="search-box--btn">
-            <Search className="search-box--btn-svg" onClick={this.onSearch} />
-          </button>
-        </div>
+        <SearchField
+          onClick={this.onSearch}
+          handleValue={this.state.search}
+          handleValueChange={this.onChange}
+        />
         <div className="util-box">
           <div className="util-box--heart">
-            <Heart className="util-box--heart--svg" />
+            <Heart
+              className="util-box--heart--svg"
+              onClick={this.handleHeartClick}
+            />
             {likesCount ? (
               <p className="util-box--heart--text">{likesCount}</p>
             ) : null}
@@ -84,14 +83,17 @@ class Header extends React.Component {
 const mapStateToProps = (state) => {
   return {
     likesCount: state.likes.countLikes,
+    likes: state.likes.likes,
+    likesResult: state.likes.likesResult,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     search: (string) => dispatch(setSearch(string)),
-    results: (res) => dispatch(setResults(res)),
-    changePageNum: (page) => dispatch(changePage(page)),
+    setLikes: (payload) => dispatch(setLikesToResults(payload)),
+    removeLikes: () => dispatch(removeLikesFromResults()),
+    onSearchAsync: (query) => dispatch(onSearchAsync(query)),
   };
 };
 

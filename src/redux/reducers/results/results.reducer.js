@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     servings: null,
     ingredients: null,
   },
+  errorMessage: null,
 };
 
 const resultsReducer = (state = INITIAL_STATE, action) => {
@@ -36,7 +37,11 @@ const resultsReducer = (state = INITIAL_STATE, action) => {
           ingredients: action.payload,
         },
       };
-
+    case resultsTypes.SEARCH_ERROR:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
     case resultsTypes.CHANGE_SERVINGS:
       return {
         ...state,
