@@ -1,6 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
+import { connect } from "react-redux";
+
+import {
+  addLiked,
+  removeLiked,
+} from "../../redux/reducers/likes/likes.actions";
+
 import {
   BarStyled,
   SvgContainerStyled,
@@ -51,7 +58,21 @@ const SvgBarStyled = styled(BarStyled)`
   background-color: black;
 `;
 
-const RecipeHeader = ({ image, title, sourceName }) => {
+const RecipeHeader = ({
+  image,
+  title,
+  sourceName,
+  id,
+  allLikes,
+  addToLikes,
+  removeFromLikes,
+}) => {
+  const currentRecipe = {
+    id,
+    image,
+    title,
+    sourceName,
+  };
   return (
     <HeaderStyled image={image}>
       <img src={image} alt={title} />
@@ -64,9 +85,20 @@ const RecipeHeader = ({ image, title, sourceName }) => {
         <SvgBarStyled>
           <SvgContainerStyled>
             <ToolTipStyled>
-              <HeartFilled fill="#FF0000" />
-              <Heart fill="white" />
-              <p className="tooltiptext">Add to Likes</p>
+              {allLikes[id] ? (
+                <HeartFilled
+                  fill="#FF0000"
+                  onClick={() => removeFromLikes(id)}
+                />
+              ) : (
+                <Heart fill="white" onClick={() => addToLikes(currentRecipe)} />
+              )}
+
+              {allLikes[id] ? (
+                <p className="tooltiptext">Remove From Likes</p>
+              ) : (
+                <p className="tooltiptext">Add To Likes</p>
+              )}
             </ToolTipStyled>
           </SvgContainerStyled>
 
@@ -82,4 +114,17 @@ const RecipeHeader = ({ image, title, sourceName }) => {
   );
 };
 
-export default RecipeHeader;
+const mapStateToProps = (state) => {
+  return {
+    allLikes: state.likes.likes,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToLikes: (item) => dispatch(addLiked(item)),
+    removeFromLikes: (item) => dispatch(removeLiked(item)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeHeader);

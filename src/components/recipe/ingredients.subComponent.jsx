@@ -1,22 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const newIngrdients = (ingredients) => {
-  const retIngre = [];
-  for (let i = 0; i < ingredients.length; i++) {
-    const {
-      name,
-      originalString,
-      measures: {
-        us: { amount, unitShort: units },
-      },
-    } = ingredients[i];
+import { connect } from "react-redux";
 
-    retIngre[i] = { key: i, name, originalString, amount, units };
-  }
-
-  return retIngre;
-};
+import { changeIngredients } from "../../redux/reducers/results/results.action";
 
 const IngredientsStyled = styled.div`
   display: flex;
@@ -45,24 +32,84 @@ const SingleIngredientStyled = styled.div`
   }
 `;
 
-const RecipeIngredients = ({ ingredients }) => {
-  const structuredIngredients = newIngrdients(ingredients);
-  return (
-    <div>
-      <HeadingStyled>Ingredients</HeadingStyled>
-      <IngredientsStyled>
-        {structuredIngredients.map((cur) => {
-          return (
-            <SingleIngredientStyled key={cur.key}>
-              <p>{cur.amount}</p>
-              <p>{cur.units}</p>
-              <p>{cur.name}</p>
-            </SingleIngredientStyled>
-          );
-        })}
-      </IngredientsStyled>
-    </div>
-  );
+class RecipeIngredients extends React.Component {
+  componentDidMount() {
+    this.setIngredients();
+  }
+
+  componentDidUpdate(prevState) {
+    const {
+      selectedRecipe: { id },
+    } = this.props;
+    if (prevState.selectedRecipe.id !== id) {
+      this.setIngredients();
+    }
+  }
+
+  setIngredients = () => {
+    const { ingredients, changeIngredientsDispatch, servings } = this.props;
+    const structuredIngredients = [];
+    for (let i = 0; i < ingredients.length; i++) {
+      const {
+        name,
+        originalString,
+        measures: {
+          us: { amount, unitShort: units },
+        },
+      } = ingredients[i];
+
+      structuredIngredients[i] = {
+        key: i,
+        name,
+        originalString,
+        amount,
+        units,
+      };
+    }
+    changeIngredientsDispatch({
+      ingredients: structuredIngredients,
+      servings,
+    });
+  };
+
+  render() {
+    const {
+      changedIngredientsState: { ingredients },
+    } = this.props;
+
+    return (
+      <div>
+        <HeadingStyled>Ingredients</HeadingStyled>
+        <IngredientsStyled>
+          {ingredients
+            ? ingredients.map((cur) => {
+                return (
+                  <SingleIngredientStyled key={cur.key}>
+                    <p>{cur.amount}</p>
+                    <p>{cur.units}</p>
+                    <p>{cur.name}</p>
+                  </SingleIngredientStyled>
+                );
+              })
+            : null}
+        </IngredientsStyled>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    selectedRecipe: state.results.selectedRecipe,
+    changedIngredientsState: state.results.changedIngredients,
+  };
 };
 
-export default RecipeIngredients;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeIngredientsDispatch: (ingredients) =>
+      dispatch(changeIngredients(ingredients)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeIngredients);

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ResultItem from "../resultsItem/resultsItem.component";
 import "./results.styles.scss";
 
-export const ResultsTemplate = ({ results }) => {
+const ResultsTemplate = ({ results }) => {
   const [pageNum, changePageNum] = useState(1);
   const resultsPerPage = 8;
 
@@ -10,6 +10,10 @@ export const ResultsTemplate = ({ results }) => {
     const page = parseInt(e.target.dataset.page);
     changePageNum(page);
   };
+
+  useEffect(() => {
+    changePageNum(1);
+  }, []);
 
   if (results !== null) {
     let start = (pageNum - 1) * resultsPerPage;

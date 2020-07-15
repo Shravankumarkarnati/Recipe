@@ -11,14 +11,24 @@ const FooterBarStyled = styled.div`
   justify-content: space-around;
   text-transform: capitalize;
 
-  & a {
+  & a,
+  & span {
     text-decoration: none;
     background: white;
     color: black;
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 1rem;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
+
+const printDiv = () => {
+  console.log("printer not working :( ");
+};
 
 const RecipeFooter = ({ sourceUrl, sourceName }) => {
   return (
@@ -27,6 +37,7 @@ const RecipeFooter = ({ sourceUrl, sourceName }) => {
       <a href={`${sourceUrl}`} target="_blank" rel="noopener noreferrer">
         Goto Source
       </a>
+      <span onClick={printDiv}>Print Recipe</span>
     </FooterBarStyled>
   );
 };

@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 const likesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case likesActionTypes.ADD_LIKED:
-      const { recipe_id, ...otherPayload } = action.payload;
+      const { id: recipe_id, ...otherPayload } = action.payload;
       if (state.likes[recipe_id])
         return {
           ...state,

@@ -32,10 +32,7 @@ const resultsReducer = (state = INITIAL_STATE, action) => {
     case resultsTypes.CHANGE_INGR:
       return {
         ...state,
-        changedIngredients: {
-          servings: 4,
-          ingredients: action.payload,
-        },
+        changedIngredients: action.payload,
       };
     case resultsTypes.SEARCH_ERROR:
       return {

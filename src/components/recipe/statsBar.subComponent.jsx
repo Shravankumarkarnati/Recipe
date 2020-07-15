@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import { connect } from "react-redux";
+import { changeIngredients } from "../../redux/reducers/results/results.action";
+
 import { ReactComponent as Add } from "../../images/add.svg";
 import { ReactComponent as Minus } from "../../images/minus.svg";
 import { ReactComponent as Timer } from "../../images/timer.svg";
@@ -68,7 +71,50 @@ export const ToolTipStyled = styled.div`
   }
 `;
 
-const StatsBar = ({ time, servings, popular, price, healthy, diet }) => {
+const handleServingChange = (changedIngredients, flag) => {
+  const { servings, ingredients } = changedIngredients;
+  const servingsOffset = flag ? 1 : -1;
+
+  const newServings = servings + servingsOffset;
+  if (newServings < 1) return;
+
+  const newIngredients = ingredients.map((cur) => {
+    let newAmount = (cur.amount * newServings) / servings;
+    newAmount = Math.round((newAmount + Number.EPSILON) * 100) / 100;
+    return { ...cur, amount: newAmount };
+  });
+
+  const newChangedIngredients = {
+    servings: newServings,
+    ingredients: newIngredients,
+  };
+
+  return newChangedIngredients;
+};
+
+const StatsBar = ({
+  time,
+  popular,
+  price,
+  healthy,
+  diet,
+  changedIngredientsState,
+  changeIngredientsDispatch,
+}) => {
+  const { servings } = changedIngredientsState;
+  let times = {};
+  if (time > 60) {
+    times = {
+      hours: Math.floor(Math.abs(time / 60)),
+      minutes: Math.floor((Math.abs(time / 60) * 60) % 60),
+    };
+  } else {
+    times = {
+      hours: null,
+      minutes: time,
+    };
+  }
+
   return (
     <BarStyled>
       <SvgContainerStyled>
@@ -77,8 +123,24 @@ const StatsBar = ({ time, servings, popular, price, healthy, diet }) => {
           <p className="tooltiptext">Servings</p>
         </ToolTipStyled>
         <TextStyled>{servings}</TextStyled>
-        <Minus fill="#e3bf4d" data-servings="-1" />
-        <Add fill="#ea3b15" data-servings="1" />
+        <Minus
+          fill="#e3bf4d"
+          onClick={() => {
+            const flag = false;
+            changeIngredientsDispatch(
+              handleServingChange(changedIngredientsState, flag)
+            );
+          }}
+        />
+        <Add
+          fill="#ea3b15"
+          onClick={() => {
+            const flag = true;
+            changeIngredientsDispatch(
+              handleServingChange(changedIngredientsState, flag)
+            );
+          }}
+        />
       </SvgContainerStyled>
 
       <SvgContainerStyled>
@@ -86,7 +148,11 @@ const StatsBar = ({ time, servings, popular, price, healthy, diet }) => {
           <Timer fill="#596273" />
           <p className="tooltiptext">Time To Cook</p>
         </ToolTipStyled>
-        <TextStyled>{`${time} Minutes`}</TextStyled>
+        {times.hours ? (
+          <TextStyled>{`${times.hours} hr ${times.minutes} mins`}</TextStyled>
+        ) : (
+          <TextStyled>{`${times.minutes} Minutes`}</TextStyled>
+        )}
       </SvgContainerStyled>
 
       {popular ? (
@@ -140,4 +206,17 @@ const StatsBar = ({ time, servings, popular, price, healthy, diet }) => {
   );
 };
 
-export default StatsBar;
+const mapStateToProps = (state) => {
+  return {
+    changedIngredientsState: state.results.changedIngredients,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeIngredientsDispatch: (servings) =>
+      dispatch(changeIngredients(servings)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StatsBar);
