@@ -1,24 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Nunito:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 
-$font-primary: 'Josefin Sans',
-sans-serif;
-$font-secondary: 'Nunito',
-sans-serif;
-$color-white-main: #FFFFFF;
-$color-navy-blue: #252932;
-$color-black-main: #191C21;
-$color-pink-dark: #F56F6C;
-$color-blue-dark: #195962;
 
+:root {
+    --color-white: #fff;
+    --color-black: #040404;
+    --color-grey: #919191;
+    --color-blue: #3C7AFF;
+    --color-green: #00A13F;
+    --color-pink: #FF394E;
+    --color-orange: #E74C3C;
+    --color-orange-light: #FF8066;
+    --color-white-2: #F3F3F3;
+    --color-brown-light: #905564;
+}
 
 * {
     margin: 0;
     padding: 0;
+    border: 0;
     box-sizing: border-box;
     font-family: inherit;
 }
 
 html {
     font-size: 62.5%;
-    font-family: $font-secondary;
+    font-family: 'Poppins', sans-serif;
 }

@@ -1,0 +1,27 @@
+.footer-container {
+    grid-row: 3/-1;
+    grid-column: 1/-1;
+    background-color: rgba(#F0EDF3, .8);
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.api {
+    height: 85%;
+    padding: 0 2rem;
+
+    &-p {
+        font-size: 2rem;
+    }
+
+    &-image {
+        height: 100%;
+
+        &>img {
+            width: 2rem;
+            margin: 0 1rem;
+        }
+    }
+}

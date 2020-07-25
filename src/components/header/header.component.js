@@ -1,100 +1,64 @@
 import React from "react";
 import "./header.styles.scss";
-import MainLogo from "../../images/logo.png";
 
-import { ReactComponent as Cart } from "../../images/supermarket.svg";
-import { ReactComponent as Heart } from "../../images/heart.svg";
+import { ReactComponent as NewLogo } from "../../images/Regale-2.svg";
+import { ReactComponent as Cart } from "../../images/grocery.svg";
+import { ReactComponent as Heart } from "../../images/heart-fill.svg";
+import { ReactComponent as Home } from "../../images/home.svg";
 
-import { setSearch } from "../../redux/reducers/search/search.action";
-import { onSearchAsync } from "../../redux/reducers/results/results.action";
-import {
-  setLikesToResults,
-  removeLikesFromResults,
-} from "../../redux/reducers/likes/likes.actions";
+import { createBrowserHistory } from "history";
 
 import { connect } from "react-redux";
-import SearchField from "../searchField/searchField.component";
+import { Link } from "react-router-dom";
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      search: "",
-    };
-  }
-
-  onChange = (e) => {
-    this.setState({
-      search: e.target.value,
-    });
-  };
-
-  onSearch = async (e) => {
-    const { search, onSearchAsync } = this.props;
-    search(this.state.search);
-    onSearchAsync(this.state.search);
-  };
-
-  handleHeartClick = () => {
-    const {
-      likesCount,
-      setLikes,
-      removeLikes,
-      likes,
-      likesResult,
-    } = this.props;
-
-    if (likesCount) {
-      Object.keys(likesResult).length > 0 ? removeLikes() : setLikes(likes);
-    }
-  };
+  history = createBrowserHistory();
 
   render() {
     const { likesCount } = this.props;
     return (
-      <div className="header">
-        <div className="logo-box">
-          <img src={MainLogo} alt="logo main" className="logo-main" />
-        </div>
-        <SearchField
-          onClick={this.onSearch}
-          handleValue={this.state.search}
-          handleValueChange={this.onChange}
-        />
-        <div className="util-box">
-          <div className="util-box--heart">
-            <Heart
-              className="util-box--heart--svg"
-              onClick={this.handleHeartClick}
-            />
-            {likesCount ? (
-              <p className="util-box--heart--text">{likesCount}</p>
+      <header className="header">
+        <div className="header-container">
+          <Link className="logo-box" to="/">
+            <NewLogo className="logo" />
+          </Link>
+          <div className="utils-container">
+            {this.history.location.pathname !== "/" ? (
+              <Link to="/" className="utils-container--home">
+                <div className="utils-container--home-svg">
+                  <Home className="svg" />
+                </div>
+                <p>Home</p>
+              </Link>
             ) : null}
-          </div>
-          <div className="util-box--cart">
-            <Cart className="util-box--cart-svg" />
+            <Link to="/saved" className="utils-container--saved">
+              <div className="utils-container--saved-svg">
+                <Heart className="svg" />
+                {likesCount > 0 ? (
+                  <span className="notifCount">{likesCount}</span>
+                ) : null}
+              </div>
+              <p>Saved</p>
+            </Link>
+            <Link to="/cart" className="utils-container--cart">
+              <div className="utils-container--cart-svg">
+                <Cart className="svg" />
+                <span className="notifCount">3</span>
+              </div>
+              <p>Cart</p>
+            </Link>
           </div>
         </div>
-      </div>
+      </header>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    likesCount: state.likes.countLikes,
-    likes: state.likes.likes,
-    likesResult: state.likes.likesResult,
+    likesCountSaved: state.likes.countLikes,
+    // cartCountSaved: state.cart.
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    search: (string) => dispatch(setSearch(string)),
-    setLikes: (payload) => dispatch(setLikesToResults(payload)),
-    removeLikes: () => dispatch(removeLikesFromResults()),
-    onSearchAsync: (query) => dispatch(onSearchAsync(query)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);

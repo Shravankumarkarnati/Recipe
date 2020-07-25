@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     ingredients: null,
   },
   errorMessage: null,
+  searching: [false, false],
 };
 
 const resultsReducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +24,11 @@ const resultsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         pageNum: action.payload,
+      };
+    case resultsTypes.SEARCHING:
+      return {
+        ...state,
+        searching: action.payload,
       };
     case resultsTypes.SELECTED_RECIPE:
       return {

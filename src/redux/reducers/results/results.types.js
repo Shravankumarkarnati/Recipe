@@ -4,6 +4,7 @@ const resultsTypes = {
   CHANGE_INGR: "CHANGE_INGR",
   CHANGE_SERVINGS: "CHANGE_SERVINGS",
   SEARCH_ERROR: "SEARCH_ERROR",
+  SEARCHING: "SEARCHING",
 };
 
 export default resultsTypes;

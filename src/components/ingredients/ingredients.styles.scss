@@ -1,0 +1,78 @@
+.recipe--ingredients {
+    grid-column: 1/7;
+
+    &-servings {
+        height: 4rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        margin: 2rem;
+        border-bottom: 1px solid red;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & p {
+            font-size: 3rem;
+            color: var(--color-orange);
+        }
+
+        &--controller {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            &>p {
+                font-size: 2rem;
+                color: black;
+            }
+
+            & svg {
+                height: 2rem;
+                width: 2rem;
+                fill: black;
+                margin: 0 1rem;
+            }
+        }
+
+    }
+
+    &-container {
+        padding-right: 3rem;
+        border-right: 2px solid #2F2F31;
+        list-style: square inside;
+    }
+
+    &-ingredient {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+
+        & span {
+            font-size: 2.5rem;
+            text-transform: capitalize;
+
+            &:not(:last-child) {
+                margin-right: 1rem;
+            }
+        }
+
+        &--quantity {
+            width: 8rem;
+        }
+
+        &--unit {
+            width: 12rem;
+        }
+    }
+}
+
+.recipe-subheading {
+    text-align: center;
+    font-size: 4.5rem;
+    font-weight: 700;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 4rem 0;
+    color: var(--color-orange);
+    text-decoration: underline #2F2F31;
+}
