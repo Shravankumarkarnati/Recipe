@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./resultsItem.styles.scss";
 
 import { onSelectedRecipe } from "../../redux/reducers/results/results.action.js";
 
 import { connect } from "react-redux";
 
-import { Redirect } from "react-router";
+import { withRouter } from "react-router";
 
 const stringShortner = (someString) => {
   if (someString.length > 25) {
@@ -15,8 +15,7 @@ const stringShortner = (someString) => {
   return someString;
 };
 
-function ResultItem({ recipe, onSelectedRecipe }) {
-  const [redirect, setRedirect] = useState(false);
+function ResultItem({ recipe, onSelectedRecipe, history }) {
   const { id, title, image } = recipe;
 
   const handleClick = (e) => {
@@ -24,12 +23,10 @@ function ResultItem({ recipe, onSelectedRecipe }) {
       e.target.closest(".results-item").dataset.recipeid
     );
     onSelectedRecipe(selected_recipe_id, image, title);
-    setRedirect(true);
+    history.push("/recipe");
   };
 
-  return redirect ? (
-    <Redirect push to="/recipe" />
-  ) : (
+  return (
     <div className="results-item" data-recipeid={`${id}`} onClick={handleClick}>
       <div
         className="results-item-image"
@@ -49,4 +46,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ResultItem);
+export default withRouter(connect(null, mapDispatchToProps)(ResultItem));

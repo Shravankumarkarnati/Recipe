@@ -1,62 +1,79 @@
 import React from "react";
 import "./header.styles.scss";
 
-import { ReactComponent as NewLogo } from "../../images/Regale-2.svg";
-import { ReactComponent as Cart } from "../../images/grocery.svg";
-import { ReactComponent as Heart } from "../../images/heart-fill.svg";
-import { ReactComponent as Home } from "../../images/home.svg";
+import { ReactComponent as NewLogo } from "../../images/header/logoMain.svg";
+import { ReactComponent as Cart } from "../../images/header/basket.svg";
+import { ReactComponent as Heart } from "../../images/header/heart-fill.svg";
+import { ReactComponent as Home } from "../../images/header/home.svg";
 
 import { createBrowserHistory } from "history";
-
+import ReactHtmlParser from "react-html-parser";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-class Header extends React.Component {
-  history = createBrowserHistory();
+const Header = ({ likesCountState }) => {
+  const history = createBrowserHistory();
 
-  render() {
-    const { likesCount } = this.props;
-    return (
-      <header className="header">
-        <div className="header-container">
-          <Link className="logo-box" to="/">
-            <NewLogo className="logo" />
-          </Link>
-          <div className="utils-container">
-            {this.history.location.pathname !== "/" ? (
-              <Link to="/" className="utils-container--home">
-                <div className="utils-container--home-svg">
-                  <Home className="svg" />
-                </div>
-                <p>Home</p>
-              </Link>
-            ) : null}
-            <Link to="/saved" className="utils-container--saved">
-              <div className="utils-container--saved-svg">
-                <Heart className="svg" />
-                {likesCount > 0 ? (
-                  <span className="notifCount">{likesCount}</span>
-                ) : null}
-              </div>
-              <p>Saved</p>
-            </Link>
-            <Link to="/cart" className="utils-container--cart">
-              <div className="utils-container--cart-svg">
-                <Cart className="svg" />
-                <span className="notifCount">3</span>
-              </div>
-              <p>Cart</p>
-            </Link>
-          </div>
-        </div>
-      </header>
-    );
+  const headerElements = [
+    {
+      name: "saved",
+      count: likesCountState,
+      link: "/saved",
+    },
+    {
+      name: "basket",
+      count: likesCountState,
+      link: "/basket",
+    },
+  ];
+
+  const homeElement = {
+    name: "home",
+    link: "/",
+  };
+
+  if (history.location.pathname !== "/") {
+    headerElements.unshift(homeElement);
   }
-}
+
+  return (
+    <header className="header">
+      <div className="header-container">
+        <Link className="logo-box" to="/">
+          <NewLogo className="logo" />
+        </Link>
+        <div className="utils-container">
+          {headerElements.map((cur) => (
+            <Link
+              key={cur.name}
+              to={`${cur.link}`}
+              className={`utils-container--${cur.name}`}
+            >
+              <div className={`utils-container--${cur.name}-svg`}>
+                {cur.name === "basket" ? (
+                  <Cart className="svg" />
+                ) : cur.name === "saved" ? (
+                  <Heart className="svg" />
+                ) : cur.name === "home" ? (
+                  <Home className="svg" />
+                ) : null}
+                {ReactHtmlParser(cur.icon)}
+                {cur.count > 0 ? (
+                  <span className="notifCount">{cur.count}</span>
+                ) : null}
+                <p>{cur.name}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </header>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
-    likesCountSaved: state.likes.countLikes,
+    likesCountState: state.likes.countLikes,
     // cartCountSaved: state.cart.
   };
 };

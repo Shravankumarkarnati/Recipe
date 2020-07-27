@@ -7,17 +7,10 @@ export const setResults = (results) => {
   };
 };
 
-export const searching = (arr) => {
+export const searchStatus = (flag) => {
   return {
-    type: resultsTypes.SEARCHING,
-    payload: arr,
-  };
-};
-
-export const searchError = (message) => {
-  return {
-    type: resultsTypes.SEARCH_ERROR,
-    payload: message,
+    type: resultsTypes.SEARCH_STATUS,
+    payload: flag,
   };
 };
 
@@ -42,27 +35,25 @@ export const changeServings = (obj) => {
   };
 };
 
-export const onSearchAsync = (query) => {
+export const onSearchAsync = (searchString) => {
   return (dispatch) => {
-    searching([true, true]);
-    // const apiKey = process.env.REACT_APP_API_KEY;
+    dispatch(searchStatus(true));
     const apiKey = process.env.REACT_APP_API_KEY2;
-    console.log(process.env, "process");
-    let apiString = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${apiKey}&number=33&sort=popularity`;
+    let apiString = `https://api.spoonacular.com/recipes/complexSearch?query=${searchString}&apiKey=${apiKey}&number=36&sort=popularity`;
     fetch(apiString)
       .then((res) => res.json())
       .then((data) => data.results)
       .then((rec) => {
         dispatch(setResults(rec));
-        searching([false, false]);
+        dispatch(searchStatus(null));
       })
-      .catch((err) => dispatch(searchError(err.message)));
+      .catch((err) => dispatch(searchStatus(false)));
   };
 };
 
 export const onSelectedRecipe = (id, image, title) => {
   return (dispatch) => {
-    // const apiKey = process.env.REACT_APP_API_KEY;
+    dispatch(searchStatus(true));
     const apiKey = process.env.REACT_APP_API_KEY2;
     let apiString = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${apiKey}`;
     fetch(apiString)
@@ -75,7 +66,8 @@ export const onSelectedRecipe = (id, image, title) => {
           data: rec,
         };
         dispatch(selectedRecipe(recipe));
+        dispatch(searchStatus(null));
       })
-      .catch((err) => dispatch(searchError(err.message)));
+      .catch((err) => dispatch(searchStatus(false)));
   };
 };

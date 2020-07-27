@@ -3,14 +3,12 @@ import resultsTypes from "./results.types";
 
 const INITIAL_STATE = {
   results: null,
-  pageNum: 1,
   selectedRecipe: null,
   changedIngredients: {
     servings: null,
     ingredients: null,
   },
-  errorMessage: null,
-  searching: [false, false],
+  searchStatus: null,
 };
 
 const resultsReducer = (state = INITIAL_STATE, action) => {
@@ -20,15 +18,10 @@ const resultsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         results: action.payload,
       };
-    case resultsTypes.CHANGE_PAGE_NUM:
+    case resultsTypes.SEARCH_STATUS:
       return {
         ...state,
-        pageNum: action.payload,
-      };
-    case resultsTypes.SEARCHING:
-      return {
-        ...state,
-        searching: action.payload,
+        searchStatus: action.payload,
       };
     case resultsTypes.SELECTED_RECIPE:
       return {
@@ -39,11 +32,6 @@ const resultsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         changedIngredients: action.payload,
-      };
-    case resultsTypes.SEARCH_ERROR:
-      return {
-        ...state,
-        errorMessage: action.payload,
       };
     case resultsTypes.CHANGE_SERVINGS:
       return {

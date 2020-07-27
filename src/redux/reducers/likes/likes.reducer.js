@@ -3,12 +3,11 @@ import likesActionTypes from "./likes.types";
 const INITIAL_STATE = {
   likes: {},
   countLikes: 0,
-  likesResult: {},
 };
 
 const likesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case likesActionTypes.ADD_LIKED:
+    case likesActionTypes.ADD_TO_LIKES:
       const { id: recipe_id, ...otherPayload } = action.payload;
       if (state.likes[recipe_id])
         return {
@@ -22,10 +21,14 @@ const likesReducer = (state = INITIAL_STATE, action) => {
         },
         countLikes: state.countLikes + 1,
       };
-    case likesActionTypes.REMOVE_LIKED:
+    case likesActionTypes.REMOVE_FROM_LIKES:
       const id = action.payload;
       if (state.likes[id]) {
         delete state.likes[id];
+      } else {
+        return {
+          ...state,
+        };
       }
       return {
         ...state,
@@ -33,16 +36,6 @@ const likesReducer = (state = INITIAL_STATE, action) => {
           ...state.likes,
         },
         countLikes: state.countLikes - 1,
-      };
-    case likesActionTypes.SET_LIKES_RESULTS:
-      return {
-        ...state,
-        likesResult: state.likes,
-      };
-    case likesActionTypes.REMOVE_LIKES_RESULTS:
-      return {
-        ...state,
-        likesResult: {},
       };
     default:
       return {

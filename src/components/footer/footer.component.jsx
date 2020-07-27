@@ -1,7 +1,7 @@
 import React from "react";
 import "./footer.styles.scss";
 
-import SpoonLogo from "../../images/spoonacular-logo-b.svg";
+import SpoonLogo from "../../images/Footer/spoonacular-logo-b.svg";
 
 const Footer = () => {
   return (
@@ -9,16 +9,17 @@ const Footer = () => {
       <div className="api">
         <p className="api-p">
           API by{" "}
-          <span className="api-image">
-            <img src={SpoonLogo} alt="spoonacular" />
-          </span>
           <a
+            className="spoonacular"
             href="https://spoonacular.com/food-api"
             target="_blank"
             rel="noopener noreferrer"
           >
             Spoonacular
           </a>
+          <span className="api-image">
+            <img src={SpoonLogo} alt="spoonacular" />
+          </span>
         </p>
       </div>
     </div>

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./body.styles.scss";
-import { ReactComponent as SearchSVG } from "../../images/search.svg";
 
-import { connect } from "react-redux";
+import { ReactComponent as SearchSVG } from "../../images/searchBar/search.svg";
+
 import { setSearch } from "../../redux/reducers/search/search.action";
 import { onSearchAsync } from "../../redux/reducers/results/results.action";
 
+import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-const Body = ({ searchDispatch, onSearchAsync, history }) => {
+const Body = ({ searchStringDispatch, onSearchAsync, history }) => {
   const [search, setSearch] = useState("");
 
   const onChange = (e) => {
@@ -17,7 +18,7 @@ const Body = ({ searchDispatch, onSearchAsync, history }) => {
 
   const onSearch = async (e) => {
     e.preventDefault();
-    searchDispatch(search);
+    searchStringDispatch(search);
     onSearchAsync(search);
     history.push("/results");
   };
@@ -46,7 +47,7 @@ const Body = ({ searchDispatch, onSearchAsync, history }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchDispatch: (string) => dispatch(setSearch(string)),
+    searchStringDispatch: (string) => dispatch(setSearch(string)),
     onSearchAsync: (query) => dispatch(onSearchAsync(query)),
   };
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import "./spinner.styles.scss";
 
-import { ReactComponent as Circle } from "../../images/circle.svg";
-import { ReactComponent as Search } from "../../images/search.svg";
+import { ReactComponent as Circle } from "../../images/LoadingSpinner/circle.svg";
+import { ReactComponent as Search } from "../../images/LoadingSpinner/search.svg";
 
 const Spinner = () => {
   return (

@@ -1,27 +1,15 @@
 import likesActionTypes from "./likes.types";
 
-export const addLiked = (item) => {
+export const addToLikes = (item) => {
   return {
-    type: likesActionTypes.ADD_LIKED,
+    type: likesActionTypes.ADD_TO_LIKES,
     payload: item,
   };
 };
 
-export const removeLiked = (recipe_id) => {
+export const removeFromLikes = (recipe_id) => {
   return {
-    type: likesActionTypes.REMOVE_LIKED,
+    type: likesActionTypes.REMOVE_FROM_LIKES,
     payload: recipe_id,
-  };
-};
-
-export const setLikesToResults = () => {
-  return {
-    type: likesActionTypes.SET_LIKES_RESULTS,
-  };
-};
-
-export const removeLikesFromResults = () => {
-  return {
-    type: likesActionTypes.REMOVE_LIKES_RESULTS,
   };
 };

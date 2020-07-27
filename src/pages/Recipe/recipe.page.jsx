@@ -6,13 +6,25 @@ import { connect } from "react-redux";
 import Header from "../../components/header/header.component";
 import Footer from "../../components/footer/footer.component";
 import Recipe from "../../components/recipe/recipe.component";
+import LoadingSpinner from "../../components/loadingSpinner/spinner.component";
 
-const RecipePage = ({ selectedRecipeState }) => {
-  return selectedRecipeState ? (
+const RecipePage = ({
+  selectedRecipeState: recipe,
+  searchStatusState: status,
+}) => {
+  return recipe ? (
     <div className="recipePage">
       <div className="container">
         <Header />
-        <Recipe />
+        {status ? (
+          <LoadingSpinner />
+        ) : status === null ? (
+          recipe ? (
+            <Recipe />
+          ) : null
+        ) : (
+          <h1>Error getting Recipe</h1>
+        )}
         <Footer />
       </div>
     </div>
@@ -22,6 +34,7 @@ const RecipePage = ({ selectedRecipeState }) => {
 const mapStateToProps = (state) => {
   return {
     selectedRecipeState: state.results.selectedRecipe,
+    searchStatusState: state.results.searchStatus,
   };
 };
 

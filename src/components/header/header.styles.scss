@@ -35,7 +35,7 @@
     height: 100%;
 
     &--saved,
-    &--cart,
+    &--basket,
     &--home {
         display: flex;
         align-items: center;
@@ -46,6 +46,7 @@
         padding: 1rem;
         cursor: pointer;
         text-decoration: none;
+        text-align: center;
 
         &-svg {
             position: relative;
