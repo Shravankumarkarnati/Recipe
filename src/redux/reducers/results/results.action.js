@@ -44,17 +44,16 @@ export const changeServings = (obj) => {
 
 export const onSearchAsync = (query) => {
   return (dispatch) => {
-    console.log("action searching true true");
     searching([true, true]);
     // const apiKey = process.env.REACT_APP_API_KEY;
     const apiKey = process.env.REACT_APP_API_KEY2;
+    console.log(process.env, "process");
     let apiString = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${apiKey}&number=33&sort=popularity`;
     fetch(apiString)
       .then((res) => res.json())
       .then((data) => data.results)
       .then((rec) => {
         dispatch(setResults(rec));
-        console.log("action searching false false");
         searching([false, false]);
       })
       .catch((err) => dispatch(searchError(err.message)));
