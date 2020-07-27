@@ -52,14 +52,12 @@ class Ingredients extends React.Component {
   handleServingChange = (changedIngredients, flag) => {
     const { servings, ingredients } = changedIngredients;
     const servingsOffset = flag ? 1 : -1;
-    console.log(servings, "before new Servings");
     let newServings;
     if (servings + servingsOffset < 1) {
       newServings = servings;
     } else {
       newServings = servings + servingsOffset;
     }
-    console.log(newServings, "after new Servings");
     const newIngredients = ingredients.map((cur) => {
       let newAmount = (cur.amount * newServings) / servings;
       newAmount = Math.round((newAmount + Number.EPSILON) * 10) / 10;

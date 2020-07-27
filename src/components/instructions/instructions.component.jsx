@@ -2,7 +2,6 @@ import React from "react";
 import "./instructions.styles.scss";
 
 const Instructions = ({ analyzedInstructions: instructions }) => {
-  console.log(instructions, "instructions");
   const allSteps = {};
   instructions.forEach((cur) => {
     const curSteps = cur["steps"];

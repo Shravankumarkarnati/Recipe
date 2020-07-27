@@ -7,44 +7,18 @@ import ReactHtmlParser from "react-html-parser";
 
 import Ingredients from "../ingredients/ingredients.component";
 import Instructions from "../instructions/instructions.component";
+import RecipeStats from "./recipe.stats";
+import { Title, ConnectedOptions } from "./recipe.utils";
 
-import { ReactComponent as Cart } from "../../images/recipePage/basket.svg";
-import { ReactComponent as Heart } from "../../images/recipePage/heart.svg";
-import { ReactComponent as HeartFilled } from "../../images/recipePage/heart-fill.svg";
-
-import { ReactComponent as Meat } from "../../images/recipePage/meat.svg";
-import { ReactComponent as Veg } from "../../images/recipePage/vegetable.svg";
-import { ReactComponent as Popularity } from "../../images/recipePage/popular.svg";
-import { ReactComponent as Cost } from "../../images/recipePage/money.svg";
-import { ReactComponent as Health } from "../../images/recipePage/healthy-food.svg";
-import { ReactComponent as Spoon } from "../../images/recipePage/spoon.svg";
-
-import {
-  addToLikes,
-  removeFromLikes,
-} from "../../redux/reducers/likes/likes.actions";
-
-const Recipe = ({
-  selectedRecipeState: { id, data },
-  allLikes,
-  addToLikes,
-  removeFromLikes,
-}) => {
+const Recipe = ({ selectedRecipeState: { id, data } }) => {
   const {
-    readyInMinutes,
     servings,
-    sourceUrl,
     sourceName,
     image,
     summary,
     extendedIngredients,
     title,
-    veryPopular,
-    cheap,
-    veryHealthy,
-    vegetarian,
     analyzedInstructions,
-    spoonacularScore,
   } = data;
 
   const currentRecipe = {
@@ -54,19 +28,6 @@ const Recipe = ({
     sourceName,
   };
 
-  let times = {};
-
-  if (readyInMinutes > 60) {
-    times = {
-      hours: Math.floor(Math.abs(readyInMinutes / 60)),
-      minutes: Math.floor((Math.abs(readyInMinutes / 60) * 60) % 60),
-    };
-  } else {
-    times = {
-      hours: null,
-      minutes: readyInMinutes,
-    };
-  }
   let history = useHistory();
 
   return (
@@ -76,112 +37,14 @@ const Recipe = ({
       </button>
       <div className="recipe--container">
         <div className="recipe--header">
-          <div className="recipe--title">
-            <p className="recipe--title-title">{title}</p>
-            {sourceName ? (
-              <p className="recipe--title-author">
-                By <span>{sourceName}</span>
-              </p>
-            ) : null}
-          </div>
-          <div className="recipe--options">
-            {allLikes[id] ? (
-              <button
-                className="recipe--options-heart"
-                onClick={() => {
-                  console.log("remove");
-                  removeFromLikes(id);
-                }}
-              >
-                <p>Unfavorite</p>
-                <HeartFilled className="recipe--svg recipe--svg-heartFilled" />
-              </button>
-            ) : (
-              <button
-                className="recipe--options-heart"
-                onClick={() => {
-                  console.log("add");
-                  addToLikes(currentRecipe);
-                }}
-              >
-                <p>Favorite</p>
-                <Heart className="recipe--svg recipe--svg-heart" />
-              </button>
-            )}
-
-            <button className="recipe--options-cart">
-              <p>Add ingredients to basket</p>
-              <Cart className="recipe--svg recipe--svg-cart" />
-            </button>
-          </div>
+          <Title title={title} sourceName={sourceName} />
+          <ConnectedOptions id={id} currentRecipe={currentRecipe} />
           <div className="recipe--image">
             <img src={image} alt={title} />
           </div>
         </div>
         <div className="recipe--body">
-          <div className="recipe--stats">
-            <div className="recipe--stats-details">
-              <p className="text">
-                Yeild : <span className="bold">{servings} Servings</span>{" "}
-              </p>
-              <p className="text">
-                Time :
-                <span className="bold">
-                  {times.hours
-                    ? `${times.hours} hr ${times.minutes} mins`
-                    : `${times.minutes} Minutes`}
-                </span>
-              </p>
-              <p className="text">
-                Votes :{" "}
-                <span className="bold">
-                  {parseInt((spoonacularScore * 10) / 10)}
-                  <Spoon className="recipe--svg recipe--svg-spoon" />
-                </span>
-              </p>
-            </div>
-            <div className="recipe--stats-insights">
-              {veryPopular ? (
-                <p className="tooltip-para">
-                  <Popularity className="recipe--svg recipe--svg-popular" />
-                  <span className="tooltiptext">Trending</span>
-                </p>
-              ) : null}
-              <p className="tooltip-para">
-                <Cost className="recipe--svg recipe--svg-coin" />
-                {cheap ? null : (
-                  <Cost className="recipe--svg recipe--svg-coin" />
-                )}
-                <span className="tooltiptext">
-                  {cheap ? "Price : Low" : "Price : High"}
-                </span>
-              </p>
-              {veryHealthy ? (
-                <p className="tooltip-para">
-                  <Health className="recipe--svg recipe--svg-healthy" />
-                  <span className="tooltiptext">Healthy</span>
-                </p>
-              ) : null}
-              <p className="tooltip-para">
-                {vegetarian ? (
-                  <Veg className="recipe--svg recipe--svg-diet" />
-                ) : (
-                  <Meat className="recipe--svg recipe--svg-diet" />
-                )}
-                {vegetarian ? (
-                  <span className="tooltiptext">Vegetarian</span>
-                ) : (
-                  <span className="tooltiptext">Not Vegetarian</span>
-                )}
-              </p>
-            </div>
-            <div className="recipe--stats-source">
-              <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
-                Recipe Source
-              </a>
-            </div>
-          </div>
-
+          <RecipeStats />
           <div className="recipe--summary">
             <p>{ReactHtmlParser(summary)}</p>
           </div>
@@ -203,14 +66,7 @@ const Recipe = ({
 const mapStateToProps = (state) => {
   return {
     selectedRecipeState: state.results.selectedRecipe,
-    allLikes: state.likes.likes,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToLikes: (item) => dispatch(addToLikes(item)),
-    removeFromLikes: (item) => dispatch(removeFromLikes(item)),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Recipe);
+export default connect(mapStateToProps)(Recipe);
