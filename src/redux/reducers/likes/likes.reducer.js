@@ -8,12 +8,12 @@ const INITIAL_STATE = {
 const likesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case likesActionTypes.ADD_TO_LIKES:
-      const { id: recipe_id, ...otherPayload } = action.payload;
-      if (state.likes[recipe_id])
+      const { id, ...otherPayload } = action.payload;
+      if (state.likes[id])
         return {
           ...state,
         };
-      state.likes[recipe_id] = { ...otherPayload, recipe_id };
+      state.likes[id] = { ...otherPayload, id };
       return {
         ...state,
         likes: {
@@ -22,9 +22,9 @@ const likesReducer = (state = INITIAL_STATE, action) => {
         countLikes: state.countLikes + 1,
       };
     case likesActionTypes.REMOVE_FROM_LIKES:
-      const id = action.payload;
-      if (state.likes[id]) {
-        delete state.likes[id];
+      const r_id = action.payload;
+      if (state.likes[r_id]) {
+        delete state.likes[r_id];
       } else {
         return {
           ...state,

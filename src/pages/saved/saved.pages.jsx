@@ -1,17 +1,16 @@
 import React from "react";
-import "./results.styles.scss";
-
 import Header from "../../components/header/header.component";
 import Footer from "../../components/footer/footer.component";
 import Results from "../../components/results/results.component";
 
 import { connect } from "react-redux";
 
-const ResultsPage = ({ searchResultsState: results }) => {
+const SavedPage = ({ allSaved: results }) => {
+  const newResults = Object.values(results);
   return (
     <div className="resultsPage">
       <Header />
-      <Results results={results} />
+      <Results results={newResults} />
       <Footer />
     </div>
   );
@@ -19,8 +18,8 @@ const ResultsPage = ({ searchResultsState: results }) => {
 
 const mapStateToProps = (state) => {
   return {
-    searchResultsState: state.results.results,
+    allSaved: state.likes.likes,
   };
 };
 
-export default connect(mapStateToProps)(ResultsPage);
+export default connect(mapStateToProps)(SavedPage);

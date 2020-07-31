@@ -8,10 +8,7 @@ import { ReactComponent as Triangle } from "../../images/resultsNav/triangle.svg
 
 import { connect } from "react-redux";
 
-const Results = ({
-  searchResultsState: results,
-  searchStatusState: status,
-}) => {
+const Results = ({ results, searchStatusState: status }) => {
   const [pageNum, changePageNum] = useState(1);
   const resultsPerPage = 9;
 
@@ -73,7 +70,6 @@ const Results = ({
 const mapStateToProps = (state) => {
   return {
     searchStatusState: state.results.searchStatus,
-    searchResultsState: state.results.results,
   };
 };
 

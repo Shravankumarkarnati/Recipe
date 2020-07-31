@@ -278,3 +278,46 @@
         visibility: visible;
     }
 }
+
+.recipe--svg-print {
+    fill: var(--color-orange);
+}
+
+
+.recipe--ingredients-addToBasket {
+    margin: 3rem auto;
+    font-size: 1.6rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    box-shadow: 0 .2rem .1rem black;
+    transition: all .3s;
+
+    &:not(:last-child) {
+        margin-right: 2rem;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active {
+        transform: translateY(+.2rem);
+        box-shadow: 0 0rem .1rem black;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: #D6D7DF;
+    }
+
+    svg {
+        margin: 0 1rem;
+        width: 2rem;
+        height: 2rem;
+    }
+}

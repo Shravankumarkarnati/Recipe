@@ -3,6 +3,7 @@ import React from "react";
 import { ReactComponent as Cart } from "../../images/recipePage/basket.svg";
 import { ReactComponent as Heart } from "../../images/recipePage/heart.svg";
 import { ReactComponent as HeartFilled } from "../../images/recipePage/heart-fill.svg";
+import { ReactComponent as Print } from "../../images/recipePage/printer.svg";
 
 import { connect } from "react-redux";
 
@@ -54,7 +55,7 @@ const Options = ({
             removeFromLikes(id);
           }}
         >
-          <p>Unfavorite</p>
+          <p>Unsave</p>
           <HeartFilled className="recipe--svg recipe--svg-heartFilled" />
         </button>
       ) : (
@@ -64,7 +65,7 @@ const Options = ({
             addToLikes(currentRecipe);
           }}
         >
-          <p>Favorite</p>
+          <p>Save</p>
           <Heart className="recipe--svg recipe--svg-heart" />
         </button>
       )}
@@ -72,6 +73,10 @@ const Options = ({
       <button className="recipe--options-cart">
         <p>Add ingredients to basket</p>
         <Cart className="recipe--svg recipe--svg-cart" />
+      </button>
+      <button className="recipe--options-print" onClick={() => window.print()}>
+        <p>Print Recipe</p>
+        <Print className="recipe--svg recipe--svg-print" />
       </button>
     </div>
   );

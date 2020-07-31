@@ -7,6 +7,7 @@ import { changeIngredients } from "../../redux/reducers/results/results.action";
 
 import { ReactComponent as Add } from "../../images/add.svg";
 import { ReactComponent as Minus } from "../../images/minus.svg";
+import { ReactComponent as Cart } from "../../images/recipePage/basket.svg";
 
 class Ingredients extends React.Component {
   componentDidMount() {
@@ -121,6 +122,10 @@ class Ingredients extends React.Component {
               })
             : null}
         </ul>
+        <button className="recipe--ingredients-addToBasket">
+          <p>Add ingredients to basket</p>
+          <Cart className="recipe--svg recipe--svg-cart" />
+        </button>
       </div>
     );
   }
