@@ -19,6 +19,7 @@ const Recipe = ({ selectedRecipeState: { id, data } }) => {
     extendedIngredients,
     title,
     analyzedInstructions,
+    sourceUrl,
   } = data;
 
   const currentRecipe = {
@@ -36,9 +37,13 @@ const Recipe = ({ selectedRecipeState: { id, data } }) => {
         &laquo; Back
       </button>
       <div className="recipe--container">
+        <ConnectedOptions
+          id={id}
+          currentRecipe={currentRecipe}
+          sourceUrl={sourceUrl}
+        />
         <div className="recipe--header">
           <Title title={title} sourceName={sourceName} />
-          <ConnectedOptions id={id} currentRecipe={currentRecipe} />
           <div className="recipe--image">
             <img src={image} alt={title} />
           </div>

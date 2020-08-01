@@ -8,11 +8,16 @@ import Footer from "../../components/footer/footer.component";
 import Recipe from "../../components/recipe/recipe.component";
 import LoadingSpinner from "../../components/loadingSpinner/spinner.component";
 
+import { Redirect } from "react-router-dom";
+
 const RecipePage = ({
   selectedRecipeState: recipe,
   searchStatusState: status,
+  searchState,
 }) => {
-  return recipe ? (
+  return !searchState ? (
+    <Redirect to="/" />
+  ) : recipe ? (
     <div className="recipePage">
       <div className="container">
         <Header />
@@ -35,6 +40,7 @@ const mapStateToProps = (state) => {
   return {
     selectedRecipeState: state.results.selectedRecipe,
     searchStatusState: state.results.searchStatus,
+    searchState: state.search.search,
   };
 };
 

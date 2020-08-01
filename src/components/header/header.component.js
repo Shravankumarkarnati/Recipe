@@ -11,7 +11,7 @@ import ReactHtmlParser from "react-html-parser";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Header = ({ likesCountState }) => {
+const Header = ({ likesCountState, cartCountState }) => {
   const history = createBrowserHistory();
 
   const headerElements = [
@@ -22,7 +22,7 @@ const Header = ({ likesCountState }) => {
     },
     {
       name: "basket",
-      count: likesCountState,
+      count: cartCountState,
       link: "/basket",
     },
   ];
@@ -74,7 +74,7 @@ const Header = ({ likesCountState }) => {
 const mapStateToProps = (state) => {
   return {
     likesCountState: state.likes.countLikes,
-    // cartCountSaved: state.cart.
+    cartCountState: state.cart.cartCount,
   };
 };
 

@@ -4,13 +4,21 @@ import { ReactComponent as Cart } from "../../images/recipePage/basket.svg";
 import { ReactComponent as Heart } from "../../images/recipePage/heart.svg";
 import { ReactComponent as HeartFilled } from "../../images/recipePage/heart-fill.svg";
 import { ReactComponent as Print } from "../../images/recipePage/printer.svg";
+import { ReactComponent as Link } from "../../images/recipePage/link.svg";
 
 import { connect } from "react-redux";
+
+import { Floater, BtnStyled, LinkStyled } from "./recipe.styled";
 
 import {
   addToLikes,
   removeFromLikes,
 } from "../../redux/reducers/likes/likes.actions";
+
+import {
+  addToCart,
+  removeFromCart,
+} from "../../redux/reducers/cart/cart.actions";
 
 export const getTime = (mins) => {
   if (mins > 60) {
@@ -39,52 +47,80 @@ export const Title = ({ title, sourceName }) => {
   );
 };
 
-const Options = ({
+const RecipeFloater = ({
   id,
   currentRecipe,
+  sourceUrl,
+  ingredients,
   allLikes,
   addToLikes,
   removeFromLikes,
+  allCartRecipes,
+  addToCart,
+  removeFromCart,
 }) => {
   return (
-    <div className="recipe--options">
+    <Floater>
       {allLikes[id] ? (
-        <button
-          className="recipe--options-heart"
+        <BtnStyled
+          title="Unsave"
+          inputColor="red"
           onClick={() => {
             removeFromLikes(id);
           }}
         >
-          <p>Unsave</p>
-          <HeartFilled className="recipe--svg recipe--svg-heartFilled" />
-        </button>
+          <HeartFilled />
+        </BtnStyled>
       ) : (
-        <button
-          className="recipe--options-heart"
+        <BtnStyled
+          title="Save"
           onClick={() => {
             addToLikes(currentRecipe);
           }}
         >
-          <p>Save</p>
-          <Heart className="recipe--svg recipe--svg-heart" />
-        </button>
+          <Heart />
+        </BtnStyled>
       )}
-
-      <button className="recipe--options-cart">
-        <p>Add ingredients to basket</p>
-        <Cart className="recipe--svg recipe--svg-cart" />
-      </button>
-      <button className="recipe--options-print" onClick={() => window.print()}>
-        <p>Print Recipe</p>
-        <Print className="recipe--svg recipe--svg-print" />
-      </button>
-    </div>
+      {allCartRecipes[id] ? (
+        <BtnStyled
+          title="Remove ingredients from basket"
+          inputColor="red"
+          onClick={() => {
+            removeFromCart(id, ingredients);
+          }}
+        >
+          <Cart />
+        </BtnStyled>
+      ) : (
+        <BtnStyled
+          title="Add ingredients to basket"
+          onClick={() => {
+            addToCart(id, ingredients);
+          }}
+        >
+          <Cart />
+        </BtnStyled>
+      )}
+      <BtnStyled title="Print Recipe" onClick={() => window.print()}>
+        <Print />
+      </BtnStyled>
+      <LinkStyled
+        title="Source Link"
+        href={sourceUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Link />
+      </LinkStyled>
+    </Floater>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
     allLikes: state.likes.likes,
+    ingredients: state.results.changedIngredients,
+    allCartRecipes: state.cart.cartItems,
   };
 };
 
@@ -92,10 +128,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addToLikes: (item) => dispatch(addToLikes(item)),
     removeFromLikes: (item) => dispatch(removeFromLikes(item)),
+    addToCart: (id, items) => dispatch(addToCart(id, items)),
+    removeFromCart: (id, items) => dispatch(removeFromCart(id, items)),
   };
 };
 
 export const ConnectedOptions = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Options);
+)(RecipeFloater);

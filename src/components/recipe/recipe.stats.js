@@ -13,7 +13,6 @@ const RecipeStats = ({ selectedRecipeState: { data } }) => {
   const {
     readyInMinutes,
     servings,
-    sourceUrl,
     veryPopular,
     cheap,
     veryHealthy,
@@ -82,32 +81,23 @@ const RecipeStats = ({ selectedRecipeState: { data } }) => {
       <div className="recipe--stats-details">
         {statsLeftElements.map((cur) => {
           return (
-            <p className="text" key={cur.name}>
+            <pre className="text" key={cur.name}>
               <span className="bold">{cur.name}</span>
               <pre> : {cur.value} </pre>
               <span>{cur.text}</span>
-            </p>
+            </pre>
           );
         })}
       </div>
       <div className="recipe--stats-insights">
-        <div className="recipe--stats-insights--top">
-          {statsRightElements.map((cur) => {
-            return (
-              <p className="tooltip-para" key={cur.text}>
-                {cur.svg}
-                <span className="tooltiptext">{cur.text}</span>
-              </p>
-            );
-          })}
-        </div>
-        <div className="recipe--stats-insights--bottom">
-          <div className="recipe--stats-source">
-            <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
-              Recipe Source
-            </a>
-          </div>
-        </div>
+        {statsRightElements.map((cur) => {
+          return (
+            <div className="tooltip-para" key={cur.text}>
+              {cur.svg}
+              <span className="tooltiptext">{cur.text}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

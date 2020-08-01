@@ -7,8 +7,12 @@ import Results from "../../components/results/results.component";
 
 import { connect } from "react-redux";
 
-const ResultsPage = ({ searchResultsState: results }) => {
-  return (
+import { Redirect } from "react-router-dom";
+
+const ResultsPage = ({ searchResultsState: results, searchState }) => {
+  return !searchState ? (
+    <Redirect to="/" />
+  ) : (
     <div className="resultsPage">
       <Header />
       <Results results={results} />
@@ -20,6 +24,7 @@ const ResultsPage = ({ searchResultsState: results }) => {
 const mapStateToProps = (state) => {
   return {
     searchResultsState: state.results.results,
+    searchState: state.search.search,
   };
 };
 

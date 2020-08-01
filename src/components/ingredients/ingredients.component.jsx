@@ -7,7 +7,6 @@ import { changeIngredients } from "../../redux/reducers/results/results.action";
 
 import { ReactComponent as Add } from "../../images/add.svg";
 import { ReactComponent as Minus } from "../../images/minus.svg";
-import { ReactComponent as Cart } from "../../images/recipePage/basket.svg";
 
 class Ingredients extends React.Component {
   componentDidMount() {
@@ -25,24 +24,25 @@ class Ingredients extends React.Component {
 
   setIngredients = () => {
     const { ingredients, changeIngredientsDispatch, servings } = this.props;
-    const structuredIngredients = [];
-    for (let i = 0; i < ingredients.length; i++) {
+
+    const structuredIngredients = ingredients.map((cur) => {
       const {
+        id,
         name,
         originalString,
         measures: {
           us: { amount, unitShort: units },
         },
-      } = ingredients[i];
+      } = cur;
 
-      structuredIngredients[i] = {
-        key: i,
+      return {
+        id,
         name,
         originalString,
         amount,
         units,
       };
-    }
+    });
 
     changeIngredientsDispatch({
       ingredients: structuredIngredients,
@@ -107,7 +107,7 @@ class Ingredients extends React.Component {
           {ingredients
             ? ingredients.map((cur) => {
                 return (
-                  <li className="recipe--ingredients-ingredient" key={cur.key}>
+                  <li className="recipe--ingredients-ingredient" key={cur.id}>
                     <span className="recipe--ingredients-ingredient--quantity">
                       {cur.amount}
                     </span>
@@ -122,10 +122,6 @@ class Ingredients extends React.Component {
               })
             : null}
         </ul>
-        <button className="recipe--ingredients-addToBasket">
-          <p>Add ingredients to basket</p>
-          <Cart className="recipe--svg recipe--svg-cart" />
-        </button>
       </div>
     );
   }

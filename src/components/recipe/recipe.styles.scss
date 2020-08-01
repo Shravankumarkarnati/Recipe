@@ -32,6 +32,10 @@
         }
     }
 
+    &--container {
+        position: relative;
+    }
+
     &--header {
         display: flex;
         flex-direction: column;
@@ -80,50 +84,6 @@
         }
     }
 
-    &--options {
-        margin-top: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        & button {
-            font-size: 1.6rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            border: 1px solid black;
-            border-radius: 1rem;
-            box-shadow: 0 .2rem .1rem black;
-            transition: all .3s;
-
-            &:not(:last-child) {
-                margin-right: 2rem;
-            }
-
-            &:focus {
-                outline: none;
-            }
-
-            &:active {
-                transform: translateY(+.2rem);
-                box-shadow: 0 0rem .1rem black;
-            }
-
-            &:hover,
-            &:focus {
-                background-color: #D6D7DF;
-            }
-
-            svg {
-                margin: 0 1rem;
-                width: 2rem;
-                height: 2rem;
-            }
-        }
-    }
-
     &--body {
         margin: 5rem 0;
         display: flex;
@@ -165,62 +125,20 @@
 
         &-insights {
             max-width: 50%;
-
-            &--top {
-                background-color: #FFF3F4;
-                margin: 1rem 0;
-                padding: 1rem;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                border: 4px solid var(--color-orange);
-                border-radius: 1rem;
-            }
-        }
-
-        &-source {
-            text-align: center;
             padding: 1rem;
-            border: 1px solid black;
-            border-radius: 1rem;
-            box-shadow: 0 .2rem .1rem black;
-            transition: all .3s;
-            transform: translateY(0rem);
 
-            &:not(:last-child) {
-                margin-right: 2rem;
-            }
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
 
-            &:focus {
-                outline: none;
-            }
-
-            &:active {
-                transform: translateY(+.2rem);
-                box-shadow: 0 0rem .1rem black;
-            }
-
-            &:hover,
-            &:focus {
-                background-color: #D6D7DF;
-            }
-
-            &>a {
-                font-size: 1.6rem;
-                text-decoration: none;
-                color: black;
-
-                &::after {
-                    content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
-                    margin: 0 3px 0 5px;
-                }
-            }
+            background-color: #FFF3F4;
+            border: 2px solid var(--color-orange);
+            border-radius: .5rem;
         }
     }
 
     &--svg {
-        width: 2.4rem;
-        height: 2.4rem;
+        width: 2.6rem;
+        height: 2.6rem;
 
         &-coin {
             fill: #FFDF00;
@@ -229,16 +147,6 @@
                 margin-left: -1rem;
             }
         }
-
-        &-spoon,
-        &-heart,
-        &-cart {
-            fill: var(--color-orange);
-        }
-
-        &-heartFilled {
-            fill: #FF0000;
-        }
     }
 }
 
@@ -246,6 +154,7 @@
 .tooltip-para {
     position: relative;
     display: inline-block;
+    padding: .1rem 1.3rem;
 
     .tooltiptext {
         visibility: hidden;
@@ -276,48 +185,5 @@
 
     &:hover .tooltiptext {
         visibility: visible;
-    }
-}
-
-.recipe--svg-print {
-    fill: var(--color-orange);
-}
-
-
-.recipe--ingredients-addToBasket {
-    margin: 3rem auto;
-    font-size: 1.6rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    border: 1px solid black;
-    border-radius: 1rem;
-    box-shadow: 0 .2rem .1rem black;
-    transition: all .3s;
-
-    &:not(:last-child) {
-        margin-right: 2rem;
-    }
-
-    &:focus {
-        outline: none;
-    }
-
-    &:active {
-        transform: translateY(+.2rem);
-        box-shadow: 0 0rem .1rem black;
-    }
-
-    &:hover,
-    &:focus {
-        background-color: #D6D7DF;
-    }
-
-    svg {
-        margin: 0 1rem;
-        width: 2rem;
-        height: 2rem;
     }
 }
