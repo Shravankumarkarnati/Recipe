@@ -2,6 +2,7 @@ import cartActionTypes from "./cart.types";
 
 const INITIAL_STATE = {
   cartItems: {},
+  allIngredients: {},
   cartCount: 0,
 };
 
@@ -32,6 +33,43 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           ...state.cartItems,
         },
         cartCount: state.cartCount - 1,
+      };
+    case cartActionTypes.ADD_ALL_INGREDIENTS:
+      return {
+        ...state,
+        allIngredients: action.payload,
+      };
+    case cartActionTypes.ADJUST_INGREDIENT:
+      const { ing_id, amount } = action.payload;
+      if (state.allIngredients[ing_id]) {
+        state.allIngredients[ing_id].amount = amount;
+        return {
+          ...state,
+          allIngredients: {
+            ...state.allIngredients,
+          },
+        };
+      }
+      return {
+        ...state,
+      };
+    case cartActionTypes.CLEAR_CART:
+      return {
+        ...state,
+        cartItems: {},
+        allIngredients: {},
+        cartCount: 0,
+      };
+    case cartActionTypes.DELETE_INGREDIENT:
+      const i_id = action.payload;
+      if (state.allIngredients[i_id]) {
+        delete state.allIngredients[i_id];
+      }
+      return {
+        ...state,
+        allIngredients: {
+          ...state.allIngredients,
+        },
       };
     default:
       return {

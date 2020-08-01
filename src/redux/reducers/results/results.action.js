@@ -38,7 +38,8 @@ export const changeServings = (obj) => {
 export const onSearchAsync = (searchString) => {
   return (dispatch) => {
     dispatch(searchStatus(true));
-    const apiKey = process.env.REACT_APP_API_KEY2;
+    const apiKey = process.env.REACT_APP_API_KEY;
+    // const apiKey = process.env.REACT_APP_API_KEY2;
     let apiString = `https://api.spoonacular.com/recipes/complexSearch?query=${searchString}&apiKey=${apiKey}&number=36&sort=popularity`;
     fetch(apiString)
       .then((res) => res.json())
@@ -54,7 +55,8 @@ export const onSearchAsync = (searchString) => {
 export const onSelectedRecipe = (id, image, title) => {
   return (dispatch) => {
     dispatch(searchStatus(true));
-    const apiKey = process.env.REACT_APP_API_KEY2;
+    const apiKey = process.env.REACT_APP_API_KEY;
+    // const apiKey = process.env.REACT_APP_API_KEY2;
     let apiString = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${apiKey}`;
     fetch(apiString)
       .then((res) => res.json())

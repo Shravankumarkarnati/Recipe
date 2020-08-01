@@ -64,7 +64,7 @@ const RecipeFloater = ({
       {allLikes[id] ? (
         <BtnStyled
           title="Unsave"
-          inputColor="red"
+          inputcolor="red"
           onClick={() => {
             removeFromLikes(id);
           }}
@@ -84,7 +84,7 @@ const RecipeFloater = ({
       {allCartRecipes[id] ? (
         <BtnStyled
           title="Remove ingredients from basket"
-          inputColor="red"
+          inputcolor="red"
           onClick={() => {
             removeFromCart(id, ingredients);
           }}

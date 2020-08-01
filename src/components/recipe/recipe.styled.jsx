@@ -24,7 +24,7 @@ svg {
 export const BtnStyled = styled.button`
   ${btnStyles}
   svg {
-    fill: ${(props) => props.inputColor || "var(--color-orange)"};
+    fill: ${(props) => props.inputcolor || "var(--color-orange)"};
   }
 `;
 
