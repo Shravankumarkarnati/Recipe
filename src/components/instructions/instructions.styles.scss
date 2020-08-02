@@ -1,18 +1,20 @@
+@import "../../variables.scss";
+
 .recipe--instructions {
 
     &-container {
         font-size: 2rem;
         padding-left: 2rem;
-        border-left: 2px solid var(--color-orange);
     }
 
     &-instruction {
         margin-bottom: 2rem;
 
         &>span {
+            color: $color-secondary;
             font-size: 3rem;
             margin-right: 3rem;
-            text-decoration: underline var(--color-orange);
+            text-decoration: underline $color-text;
         }
     }
 }

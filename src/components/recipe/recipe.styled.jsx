@@ -2,21 +2,20 @@ import styled from "styled-components";
 
 const btnStyles = `transition: all 0.3s;
 padding: 1rem;
+background-color: var(--color-text);
 
 &:focus {
   outline: none;
 }
 
 &:hover {
-  background-color: #d6d7df;
-
+  background-color:var(--color-secondary);
   & svg{
-    fill:black;
+    fill:var(--color-text);
   }
 }
 
 svg {
-  fill:var(--color-orange);
   width: 2.6rem;
   height: 2.6rem;
 }`;
@@ -24,12 +23,15 @@ svg {
 export const BtnStyled = styled.button`
   ${btnStyles}
   svg {
-    fill: ${(props) => props.inputcolor || "var(--color-orange)"};
+    fill: ${(props) => props.inputcolor || "var(--color-secondary)"};
   }
 `;
 
 export const LinkStyled = styled.a`
   ${btnStyles}
+  svg {
+    fill: ${(props) => props.inputcolor || "var(--color-secondary)"};
+  }
 `;
 
 export const Floater = styled.div`
@@ -38,11 +40,21 @@ export const Floater = styled.div`
   align-items: center;
   justify-content: center;
 
-  border: 1px solid black;
+  border: 1px solid var(--color-text);
   border-radius: 0.5rem;
   overflow: hidden;
 
   position: fixed;
   top: 20rem;
-  right: 20rem;
+  right: 10rem;
+
+  @media only screen and (max-width: 786px) {
+    top: 20rem;
+    right: 2rem;
+  }
+
+  @media only screen and (max-width: 500px) {
+    top: 40rem;
+    right: 2rem;
+  }
 `;

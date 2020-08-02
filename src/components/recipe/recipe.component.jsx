@@ -2,7 +2,6 @@ import React from "react";
 import "./recipe.styles.scss";
 
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
 
 import Ingredients from "../ingredients/ingredients.component";
@@ -31,13 +30,8 @@ const Recipe = ({ selectedRecipeState: { id, data } }) => {
     score: parseInt((spoonacularScore * 10) / 10),
   };
 
-  let history = useHistory();
-
   return (
     <div className="recipe">
-      <button className="recipe--backBtn" onClick={() => history.goBack()}>
-        &laquo; Back
-      </button>
       <div className="recipe--container">
         <ConnectedOptions
           id={id}

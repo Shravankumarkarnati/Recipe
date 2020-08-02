@@ -1,5 +1,4 @@
 import React from "react";
-import "./recipe.styles.scss";
 
 import { connect } from "react-redux";
 
@@ -18,7 +17,7 @@ const RecipePage = ({
   return !searchState ? (
     <Redirect to="/" />
   ) : recipe ? (
-    <div className="recipePage">
+    <div className="anyPage">
       <div className="container">
         <Header />
         {status ? (

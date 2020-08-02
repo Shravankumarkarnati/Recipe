@@ -5,11 +5,10 @@ import Footer from "../../components/footer/footer.component";
 import CartBody from "../../components/cartBody/cartBody.components";
 
 import { connect } from "react-redux";
-// import { Redirect } from "react-router-dom";
 
 import { addAllIngredients } from "../../redux/reducers/cart/cart.actions";
 
-const CartPage = ({ cartItems, searchState, setAllIngredients }) => {
+const CartPage = ({ cartItems, setAllIngredients }) => {
   let allIngredients = {};
   Object.values(cartItems).forEach((cur) => {
     const cur_ingredients = cur.ingredients;
@@ -29,14 +28,13 @@ const CartPage = ({ cartItems, searchState, setAllIngredients }) => {
     });
   });
   setAllIngredients(allIngredients);
-  // !searchState ? (
-  // <Redirect to="/" />
-  // ) :
   return (
-    <div className="cartPage">
-      <Header />
-      <CartBody />
-      <Footer />
+    <div className="anyPage">
+      <div className="container">
+        <Header />
+        <CartBody />
+        <Footer />
+      </div>
     </div>
   );
 };
@@ -44,7 +42,6 @@ const CartPage = ({ cartItems, searchState, setAllIngredients }) => {
 const mapStateToProps = (state) => {
   return {
     cartItems: state.cart.cartItems,
-    searchState: state.search.search,
   };
 };
 

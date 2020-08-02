@@ -1,39 +1,20 @@
+@import "../../variables.scss";
+
 .recipe {
     grid-row: 2/3;
     grid-column: 1/-1;
     height: 100%;
-    max-width: 114rem;
-    overflow: hidden;
-    padding: 4rem 10rem;
-    position: relative;
-    margin: 0 auto;
-
-    &--backBtn {
-        font-size: 1.5rem;
-        color: var(--color-orange);
-        padding: .5rem;
-        border: 1px solid black;
-        border-radius: .5rem;
-        box-shadow: 0 .2rem .1rem black;
-        transition: all .3s;
-
-        &:focus {
-            outline: none;
-        }
-
-        &:active {
-            transform: translateY(+.2rem);
-            box-shadow: 0 0rem .1rem black;
-        }
-
-        &:hover,
-        &:focus {
-            background-color: #D6D7DF;
-        }
-    }
+    width: 100%;
+    background-color: $color-primary;
+    color: $color-text;
 
     &--container {
         position: relative;
+        max-width: 80%;
+        overflow: hidden;
+        padding: 4rem;
+        position: relative;
+        margin: 0 auto;
     }
 
     &--header {
@@ -64,22 +45,21 @@
         text-transform: capitalize;
 
         &-title {
-            font-size: 4rem;
+            font-size: 6rem;
             font-weight: 800;
-            color: #010205;
-            font-family: 'Josefin Sans', sans-serif;
+            color: $color-secondary;
         }
 
         &-author {
             margin-top: 2rem;
-            color: #2F2F31;
             font-weight: 600;
             font-size: 1.3rem;
+            color: $color-secondary;
 
             & span {
+                color: $color-text;
                 margin-left: 1rem;
                 font-size: 2rem;
-                color: var(--color-orange);
             }
         }
     }
@@ -97,6 +77,14 @@
 
         padding: 3rem;
         font-size: 2.4rem;
+
+        & a,
+        & b {
+            text-transform: none;
+            text-decoration: none;
+            color: $color-secondary;
+            font-weight: normal;
+        }
     }
 
     &--stats {
@@ -130,9 +118,13 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
 
-            background-color: #FFF3F4;
-            border: 2px solid var(--color-orange);
+            background-color: $color-text;
+            border: 2px solid $color-secondary;
             border-radius: .5rem;
+
+            @media only screen and (max-width:$screen-tabletP) {
+                display: none;
+            }
         }
     }
 
@@ -159,8 +151,8 @@
     .tooltiptext {
         visibility: hidden;
         width: 12rem;
-        background-color: white;
-        color: black;
+        background-color: $color-text;
+        color: $color-teritary;
         font-size: 1.5rem;
         text-align: center;
         border-radius: 6px;
@@ -180,7 +172,7 @@
         margin-left: -5px;
         border-width: 5px;
         border-style: solid;
-        border-color: black transparent transparent transparent;
+        border-color: $color-secondary transparent transparent transparent;
     }
 
     &:hover .tooltiptext {

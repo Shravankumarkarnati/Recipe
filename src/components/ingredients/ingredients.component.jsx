@@ -78,9 +78,11 @@ class Ingredients extends React.Component {
     const { ingredients, servings } = changedIngredientsState;
     return (
       <div>
-        <h1 className="recipe--ingredients-heading recipe-subheading">
-          Ingredients
-        </h1>
+        {ingredients && Object.keys(ingredients).length ? (
+          <h1 className="recipe--ingredients-heading recipe-subheading">
+            Ingredients
+          </h1>
+        ) : null}
         <div className="recipe--ingredients-servings">
           <div className="recipe--ingredients-servings--controller">
             <p>Servings</p>
@@ -104,7 +106,7 @@ class Ingredients extends React.Component {
           <p>{servings}</p>
         </div>
         <ul className="recipe--ingredients-container">
-          {ingredients
+          {ingredients && Object.keys(ingredients).length
             ? ingredients.map((cur) => {
                 return (
                   <li className="recipe--ingredients-ingredient" key={cur.id}>

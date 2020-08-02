@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 const Results = ({ results, searchStatusState: status }) => {
   const [pageNum, changePageNum] = useState(1);
-  const resultsPerPage = 9;
+  let resultsPerPage = window.innerWidth < 1030 ? 10 : 9;
 
   const handlePageChange = (e) => {
     const page = parseInt(e.target.dataset.page);

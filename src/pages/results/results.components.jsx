@@ -12,10 +12,12 @@ const ResultsPage = ({ searchResultsState: results, searchState }) => {
   return !searchState ? (
     <Redirect to="/" />
   ) : (
-    <div className="resultsPage">
-      <Header />
-      <Results results={results} />
-      <Footer />
+    <div className="anyPage">
+      <div className="container">
+        <Header />
+        <Results results={results} />
+        <Footer />
+      </div>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Instructions = ({ analyzedInstructions: instructions }) => {
     .sort(function (a, b) {
       return a - b;
     });
-  return (
+  return !sortedKeys.length ? null : (
     <div>
       <h1 className="recipe--instructions-heading recipe-subheading">
         Preparation

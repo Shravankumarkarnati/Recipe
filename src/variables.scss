@@ -12,3 +12,18 @@ $screen-tabletP: 786px;
 $screen-mobileL: 500px;
 $screen-mobileM: 400px;
 $screen-mobileS: 350px;
+
+:export {
+    color-primary: $color-primary;
+    color-secondary: $color-secondary;
+    color-teritary: $color-teritary;
+    color-text: $color-text;
+
+    screen-fourk: $screen-fourk;
+    screen-desktop: $screen-desktop;
+    screen-tabletL: $screen-tabletL;
+    screen-tabletP: $screen-tabletP;
+    screen-mobileL: $screen-mobileL;
+    screen-mobileM: $screen-mobileM;
+    screen-mobileS: $screen-mobileS;
+}

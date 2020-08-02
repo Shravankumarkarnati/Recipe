@@ -7,10 +7,12 @@ import { connect } from "react-redux";
 
 const SavedPage = ({ searchState }) => {
   return (
-    <div>
-      <Header />
-      <SavedBody />
-      <Footer />
+    <div className="anyPage">
+      <div className="container">
+        <Header />
+        <SavedBody />
+        <Footer />
+      </div>
     </div>
   );
 };

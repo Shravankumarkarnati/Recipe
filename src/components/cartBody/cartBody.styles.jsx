@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 export const CartBodyStyled = styled.div`
-  min-height: 81.5vh;
-  max-width: 114rem;
+  grid-column: 1/-1;
+  grid-row: 2/3;
+  /* max-width: 114rem; */
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  background: var(--color-primary);
 `;
 
 export const Title = styled.h1`
@@ -13,18 +16,19 @@ export const Title = styled.h1`
   width: 100%;
   text-align: center;
   margin: 2rem 0;
-  color: var(--color-orange);
+  color: var(--color-secondary);
   text-transform: uppercase;
 `;
 
 export const ClearBtn = styled.button`
   cursor: pointer;
   align-self: flex-end;
+  margin-right: 5rem;
   text-align: center;
-  color: var(--color-white);
+  color: var(--color-text);
   padding: 1rem;
   font-size: 1.6rem;
-  background-color: var(--color-orange);
+  background-color: var(--color-secondary);
   transition: all 0.2s;
   text-transform: capitalize;
   border-radius: 0.5rem;
@@ -34,12 +38,12 @@ export const ClearBtn = styled.button`
   }
 
   &:hover {
-    background-color: var(--color-black);
+    opacity: 0.9;
   }
 `;
 
 export const Ingredients = styled.div`
-  width: 80%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -51,7 +55,7 @@ export const IngredientContainer = styled.div`
   padding: 1rem;
   width: 100%;
   margin: 0.1rem;
-  background: var(--color-grey-light);
+  background: var(--color-teritary);
   border-radius: 0.8rem;
 
   display: grid;
@@ -69,7 +73,8 @@ export const InputContainer = styled.input`
   text-align: center;
   border: none;
   font-size: 1.5rem;
-  color: black;
+  color: var(--color-text);
+  background: var(--color-teritary);
   padding: 0.5rem 0;
   margin: 0;
 `;
@@ -79,8 +84,8 @@ export const ChangeBtn = styled.button`
   width: 3rem;
   height: 3rem;
   text-align: center;
-  color: var(--color-black);
-  background-color: var(--color-white-2);
+  color: var(--color-primary);
+  background-color: var(--color-teritary);
   padding: 0.5rem;
   font-size: 2rem;
   transition: all 0.2s;
@@ -99,13 +104,13 @@ export const ChangeBtn = styled.button`
     transform: translate(-50%, -50%);
     width: 2rem;
     height: 2rem;
-    fill: ${(props) => props.fillcolor || "black"};
+    fill: ${(props) => props.fillcolor || "var(--color-secondary)"};
   }
 `;
 
 export const IngredientText = styled.p`
   font-size: 1.8rem;
   margin: 0 2rem;
-  color: black;
+  color: var(--color-text);
   text-transform: capitalize;
 `;
