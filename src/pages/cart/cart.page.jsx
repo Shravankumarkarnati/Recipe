@@ -1,8 +1,7 @@
 import React from "react";
 
-import Header from "../../components/header/header.component";
-import Footer from "../../components/footer/footer.component";
 import CartBody from "../../components/cartBody/cartBody.components";
+import LayoutPage from "../Layout/layout.page";
 
 import { connect } from "react-redux";
 
@@ -29,13 +28,9 @@ const CartPage = ({ cartItems, setAllIngredients }) => {
   });
   setAllIngredients(allIngredients);
   return (
-    <div className="anyPage">
-      <div className="container">
-        <Header />
-        <CartBody />
-        <Footer />
-      </div>
-    </div>
+    <LayoutPage>
+      <CartBody />
+    </LayoutPage>
   );
 };
 

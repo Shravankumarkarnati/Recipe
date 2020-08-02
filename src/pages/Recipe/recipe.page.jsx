@@ -2,10 +2,10 @@ import React from "react";
 
 import { connect } from "react-redux";
 
-import Header from "../../components/header/header.component";
-import Footer from "../../components/footer/footer.component";
 import Recipe from "../../components/recipe/recipe.component";
 import LoadingSpinner from "../../components/loadingSpinner/spinner.component";
+
+import LayoutPage from "../Layout/layout.page";
 
 import { Redirect } from "react-router-dom";
 
@@ -17,21 +17,17 @@ const RecipePage = ({
   return !searchState ? (
     <Redirect to="/" />
   ) : recipe ? (
-    <div className="anyPage">
-      <div className="container">
-        <Header />
-        {status ? (
-          <LoadingSpinner />
-        ) : status === null ? (
-          recipe ? (
-            <Recipe />
-          ) : null
-        ) : (
-          <h1>Error getting Recipe</h1>
-        )}
-        <Footer />
-      </div>
-    </div>
+    <LayoutPage>
+      {status ? (
+        <LoadingSpinner />
+      ) : status === null ? (
+        recipe ? (
+          <Recipe />
+        ) : null
+      ) : (
+        <h1>Error getting Recipe</h1>
+      )}
+    </LayoutPage>
   ) : null;
 };
 

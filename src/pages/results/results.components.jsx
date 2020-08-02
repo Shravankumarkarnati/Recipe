@@ -1,8 +1,7 @@
 import React from "react";
 
-import Header from "../../components/header/header.component";
-import Footer from "../../components/footer/footer.component";
 import Results from "../../components/results/results.component";
+import LayoutPage from "../Layout/layout.page";
 
 import { connect } from "react-redux";
 
@@ -12,13 +11,9 @@ const ResultsPage = ({ searchResultsState: results, searchState }) => {
   return !searchState ? (
     <Redirect to="/" />
   ) : (
-    <div className="anyPage">
-      <div className="container">
-        <Header />
-        <Results results={results} />
-        <Footer />
-      </div>
-    </div>
+    <LayoutPage>
+      <Results results={results} />
+    </LayoutPage>
   );
 };
 
