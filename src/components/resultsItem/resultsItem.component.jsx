@@ -7,14 +7,6 @@ import { connect } from "react-redux";
 
 import { withRouter } from "react-router";
 
-const stringShortner = (someString) => {
-  if (someString.length > 15) {
-    let newString = someString.slice(0, 15) + "...";
-    return newString;
-  }
-  return someString;
-};
-
 function ResultItem({ recipe, onSelectedRecipe, history }) {
   const { id, title, image } = recipe;
 
@@ -27,14 +19,18 @@ function ResultItem({ recipe, onSelectedRecipe, history }) {
   };
 
   return (
-    <div className="results-item" data-recipeid={`${id}`} onClick={handleClick}>
-      <p className="full-title">{title}</p>
+    <div
+      className="results-item"
+      title={title}
+      data-recipeid={`${id}`}
+      onClick={handleClick}
+    >
       <div
         className="results-item-image"
         style={{ backgroundImage: `url(${image})` }}
       ></div>
       <div className="results-item-details">
-        <p className="results-item--title">{stringShortner(title)}</p>
+        <p className="results-item--title">{title}</p>
       </div>
     </div>
   );

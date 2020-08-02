@@ -26,19 +26,25 @@ const Body = ({ searchStringDispatch, onSearchAsync, history }) => {
   return (
     <div className="body">
       <div className="body-main">
-        <p className="body-main--heading">Find a Recipe</p>
+        <p className="body-main--heading">
+          <span>Find </span>
+          <span>a </span>
+          <span>Recipe</span>
+        </p>
         <form onSubmit={onSearch}>
           <div className="body-main--search">
             <SearchSVG className="search-button-svg" />
             <input type="text" value={search} onChange={onChange} />
           </div>
-          <button
-            type="submit"
-            className="body-main--button"
-            onClick={onSearch}
-          >
-            Search
-          </button>
+          <div className="body-main--button">
+            <button
+              type="submit"
+              className="body-main--button-btn"
+              onClick={onSearch}
+            >
+              Search
+            </button>
+          </div>
         </form>
       </div>
     </div>

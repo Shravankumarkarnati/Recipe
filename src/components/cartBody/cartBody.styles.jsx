@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CartBodyStyled = styled.div`
-  min-height: 82vh;
+  min-height: 81.5vh;
   max-width: 114rem;
   margin: 0 auto;
   display: flex;
@@ -63,10 +63,6 @@ export const ChangeController = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-export const SvgContainer = styled.div`
-  text-align: center;
 `;
 
 export const InputContainer = styled.input`

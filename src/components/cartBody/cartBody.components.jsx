@@ -28,6 +28,7 @@ const CartBody = ({
   changeAmount,
   clearCart,
   deleteIngredient,
+  cartCount,
 }) => {
   const handleAmountChangeBtn = (e, id, old_amount) => {
     const sign = e.target.closest("button").dataset.sign === "plus" ? +1 : -1;
@@ -43,7 +44,16 @@ const CartBody = ({
     if (sure) clearCart();
   };
 
-  return (
+  return !cartCount ? (
+    <CartBodyStyled>
+      <Title>ingredients</Title>
+      <IngredientText
+        style={{ fontSize: "3rem", textAlign: "center", fontWeight: "700" }}
+      >
+        Your Basket is Empty!
+      </IngredientText>
+    </CartBodyStyled>
+  ) : (
     <CartBodyStyled>
       <Title>ingredients</Title>
       <ClearBtn onClick={handleClearCart}>Clear All Items</ClearBtn>
@@ -92,6 +102,7 @@ const CartBody = ({
 const mapStateToProps = (state) => {
   return {
     ingredients: state.cart.allIngredients,
+    cartCount: state.cart.cartCount,
   };
 };
 

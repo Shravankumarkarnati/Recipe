@@ -37,6 +37,12 @@ const likesReducer = (state = INITIAL_STATE, action) => {
         },
         countLikes: state.countLikes - 1,
       };
+    case likesActionTypes.DELETE_ALL_LIKES:
+      return {
+        ...state,
+        likes: {},
+        countLikes: 0,
+      };
     default:
       return {
         ...state,

@@ -1,7 +1,7 @@
 import React from "react";
 import "./footer.styles.scss";
 
-import SpoonLogo from "../../images/Footer/spoonacular-logo-b.svg";
+import SpoonacularLogo from "../../images/Footer/spoonacular-logo-b.svg";
 
 const Footer = () => {
   return (
@@ -18,7 +18,7 @@ const Footer = () => {
             Spoonacular
           </a>
           <span className="api-image">
-            <img src={SpoonLogo} alt="spoonacular" />
+            <img src={SpoonacularLogo} alt="spoonacular" />
           </span>
         </p>
       </div>

@@ -1,7 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
-
+@import "./variables.scss";
 
 :root {
+    --color-primary: #000026;
+    --color-secondary: #CEA716;
+    --color-teritary: #2D3053;
+    --color-text: #EEEDFF;
+
+    --screen-fourk: 1920px;
+    --screen-desktop: 1440px;
+    --screen-tabletL: 1024px;
+    --screen-tabletP: 786px;
+    --screen-mobileL: 500px;
+    --screen-mobileM: 400px;
+    --screen-mobileS: 350px;
+
+
     --color-white: #fff;
     --color-black: #040404;
     --color-grey: #919191;
@@ -26,4 +40,63 @@
 html {
     font-size: 62.5%;
     font-family: 'Poppins', sans-serif;
+
+    @media only screen and (min-width: $screen-fourk) {
+        font-size: 120%;
+    }
+
+    @media only screen and (max-width: $screen-desktop) {
+        font-size: 62.5%;
+    }
+
+    @media only screen and (max-width: $screen-tabletL) {
+        font-size: 60%;
+    }
+
+    @media only screen and (max-width: $screen-tabletP) {
+        font-size: 50%;
+    }
+
+    @media only screen and (max-width: $screen-mobileL) {
+        font-size: 30%;
+    }
+
+    @media only screen and (max-width: $screen-mobileM) {
+        font-size: 25%;
+    }
+
+    @media only screen and (max-width: $screen-mobileS) {
+        font-size: 20%;
+    }
 }
+
+
+.anyPage {
+    min-height: 100vh;
+    max-width: 100vw;
+    position: relative;
+    overflow: hidden;
+
+    .container {
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-rows: 13vh minmax(78.5vh, auto) 8vh;
+        grid-template-columns: repeat(2, 1fr);
+
+        @media only screen and (max-width: $screen-tabletP) {
+            grid-template-rows: 17vh minmax(74.5vh, auto) 8vh;
+        }
+    }
+}
+
+
+// #FE0000 
+// #0112fe
+// #ffdb01
+// #000f1d
+
+// #000026
+// #2D3053
+// #EEEDFF
+// #CEA716

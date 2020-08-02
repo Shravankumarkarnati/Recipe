@@ -20,6 +20,7 @@ const Recipe = ({ selectedRecipeState: { id, data } }) => {
     title,
     analyzedInstructions,
     sourceUrl,
+    spoonacularScore,
   } = data;
 
   const currentRecipe = {
@@ -27,6 +28,7 @@ const Recipe = ({ selectedRecipeState: { id, data } }) => {
     image,
     title,
     sourceName,
+    score: parseInt((spoonacularScore * 10) / 10),
   };
 
   let history = useHistory();

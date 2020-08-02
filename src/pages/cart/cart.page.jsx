@@ -1,12 +1,11 @@
 import React from "react";
-import "./cartPage.styles.scss";
 
 import Header from "../../components/header/header.component";
 import Footer from "../../components/footer/footer.component";
 import CartBody from "../../components/cartBody/cartBody.components";
 
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 import { addAllIngredients } from "../../redux/reducers/cart/cart.actions";
 
@@ -30,9 +29,10 @@ const CartPage = ({ cartItems, searchState, setAllIngredients }) => {
     });
   });
   setAllIngredients(allIngredients);
-  return !searchState ? (
-    <Redirect to="/" />
-  ) : (
+  // !searchState ? (
+  // <Redirect to="/" />
+  // ) :
+  return (
     <div className="cartPage">
       <Header />
       <CartBody />

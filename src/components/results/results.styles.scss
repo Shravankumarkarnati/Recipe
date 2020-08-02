@@ -4,12 +4,11 @@
 
     width: 100%;
     padding: 5rem 0;
-    min-height: 80vh;
+    min-height: 81.5vh;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 
     & .btn {
         width: 5rem;
@@ -50,13 +49,15 @@
 }
 
 .results-container {
-    margin: auto;
-    width: 80%;
+    margin: 0 auto;
+    width: 100rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1.5rem;
+    // grid-template-columns: repeat(minmax(min-content, 3), 32rem);
+    grid-template-columns: repeat(3, 32rem);
+    grid-gap: .5rem;
     border-radius: .5rem;
     overflow: hidden;
-    box-shadow: 0rem .2rem 2rem black;
-    background-color: rgb(194, 184, 184);
+    box-shadow: 0rem .2rem 1rem black;
+    padding: 1rem;
+    background-color: rgb(241, 234, 234);
 }

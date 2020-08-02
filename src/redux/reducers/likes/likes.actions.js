@@ -13,3 +13,9 @@ export const removeFromLikes = (recipe_id) => {
     payload: recipe_id,
   };
 };
+
+export const deleteAllLikes = () => {
+  return {
+    type: likesActionTypes.DELETE_ALL_LIKES,
+  };
+};

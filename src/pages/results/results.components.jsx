@@ -1,5 +1,4 @@
 import React from "react";
-import "./results.styles.scss";
 
 import Header from "../../components/header/header.component";
 import Footer from "../../components/footer/footer.component";
