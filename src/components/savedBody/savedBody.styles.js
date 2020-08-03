@@ -7,11 +7,15 @@ export const RecipeContainer = styled.div`
   height: 12rem;
   margin: 0.1rem;
   border-radius: 0.8rem;
-  background: var(--color-grey-light);
+  background: var(--color-teritary);
 
   display: grid;
   grid-template-columns: 15rem 1fr 10rem 5rem;
   align-items: center;
+
+  @media only screen and (max-width: ${(props) => props.theme.screenTabletP}) {
+    grid-template-columns: 15rem 1fr 5rem;
+  }
 `;
 
 export const DetailText = styled.p`
@@ -19,7 +23,7 @@ export const DetailText = styled.p`
   font-size: ${(props) => props.size || "2.4rem"};
   margin: 0 2rem;
   font-weight: ${(props) => props.weight || "400"};
-  color: ${(props) => props.color || "black"};
+  color: ${(props) => props.color || "var(--color-text)"};
   text-transform: capitalize;
 `;
 
@@ -30,7 +34,11 @@ export const DetailsContainer = styled.div`
   justify-content: center;
 
   &:hover p {
-    color: var(--color-orange);
+    color: var(--color-secondary);
+  }
+
+  @media only screen and (max-width: ${(props) => props.theme.screenTabletP}) {
+    display: ${(props) => props.tabletpdisplay || null};
   }
 `;
 

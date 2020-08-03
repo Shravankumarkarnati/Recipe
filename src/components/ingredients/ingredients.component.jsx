@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 
 import { changeIngredients } from "../../redux/reducers/results/results.action";
 
-import { ReactComponent as Add } from "../../images/add.svg";
-import { ReactComponent as Minus } from "../../images/minus.svg";
+import { ReactComponent as Add } from "../../images/ingredients/add.svg";
+import { ReactComponent as Minus } from "../../images/ingredients/minus.svg";
 
 class Ingredients extends React.Component {
   componentDidMount() {

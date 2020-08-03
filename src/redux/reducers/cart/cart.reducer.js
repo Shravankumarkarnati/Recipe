@@ -1,4 +1,5 @@
 import cartActionTypes from "./cart.types";
+import { REHYDRATE } from "redux-persist";
 
 const INITIAL_STATE = {
   cartItems: {},
@@ -70,6 +71,22 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         allIngredients: {
           ...state.allIngredients,
         },
+      };
+    case REHYDRATE:
+      if (action.payload) {
+        return {
+          ...state,
+          cartItems: {
+            ...action.payload.cart.cartItems,
+          },
+          allIngredients: {
+            ...action.payload.cart.allIngredients,
+          },
+          cartCount: action.payload.cart.cartCount,
+        };
+      }
+      return {
+        ...state,
       };
     default:
       return {

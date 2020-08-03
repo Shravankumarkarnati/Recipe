@@ -1,4 +1,5 @@
 import likesActionTypes from "./likes.types";
+import { REHYDRATE } from "redux-persist";
 
 const INITIAL_STATE = {
   likes: {},
@@ -42,6 +43,19 @@ const likesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         likes: {},
         countLikes: 0,
+      };
+    case REHYDRATE:
+      if (action.payload) {
+        return {
+          ...state,
+          likes: {
+            ...action.payload.likes.likes,
+          },
+          countLikes: action.payload.likes.countLikes,
+        };
+      }
+      return {
+        ...state,
       };
     default:
       return {

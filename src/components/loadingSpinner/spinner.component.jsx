@@ -7,7 +7,7 @@ import { ReactComponent as Search } from "../../images/LoadingSpinner/search.svg
 const Spinner = () => {
   return (
     <div className="spinner-container">
-      <div className="spinners-svg-container">
+      <div className="spinner-container--svg">
         <Circle className="circle spinner-svg" />
         <Search className="search spinner-svg" />
       </div>

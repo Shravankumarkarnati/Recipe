@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const CartBodyStyled = styled.div`
   grid-column: 1/-1;
   grid-row: 2/3;
-  /* max-width: 114rem; */
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -61,6 +60,12 @@ export const IngredientContainer = styled.div`
   display: grid;
   grid-template-columns: 12rem 8rem 25rem 1fr 4rem;
   align-items: center;
+
+  @media only screen and (max-width: ${(props) => props.theme.screenTabletL}) {
+    grid-template-columns: 20rem 10rem 1fr 5rem;
+    grid-template-rows: 1fr min-content;
+    grid-row-gap: 1.5rem;
+  }
 `;
 
 export const ChangeController = styled.div`
@@ -113,4 +118,10 @@ export const IngredientText = styled.p`
   margin: 0 2rem;
   color: var(--color-text);
   text-transform: capitalize;
+  text-align: center;
+
+  @media only screen and (max-width: ${(props) => props.theme.screenTabletL}) {
+    grid-row: ${(props) => (props.gridtabletfix ? "2/-1" : null)};
+    grid-column: ${(props) => (props.gridtabletfix ? "1/-1" : null)};
+  }
 `;

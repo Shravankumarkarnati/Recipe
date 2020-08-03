@@ -44,6 +44,13 @@ const CartBody = ({
     if (sure) clearCart();
   };
 
+  const handleDeleteItem = (ing_id) => {
+    deleteIngredient(ing_id);
+    if (Object.values(ingredients).length === 0) {
+      clearCart();
+    }
+  };
+
   return !cartCount ? (
     <CartBodyStyled>
       <Title>ingredients</Title>
@@ -84,11 +91,13 @@ const CartBody = ({
             </ChangeController>
             <IngredientText>{ing.units}</IngredientText>
             <IngredientText>{ing.name}</IngredientText>
-            <IngredientText>{ing.originalString}</IngredientText>
+            <IngredientText gridtabletfix={true}>
+              {ing.originalString}
+            </IngredientText>
             <ChangeBtn
               fillcolor="red"
               title="Delete Ingredient"
-              onClick={() => deleteIngredient(ing.id)}
+              onClick={() => handleDeleteItem(ing.id)}
             >
               <Cross />
             </ChangeBtn>

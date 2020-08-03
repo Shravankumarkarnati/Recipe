@@ -39,17 +39,24 @@ const SavedBody = ({
     history.push("/recipe");
   };
 
+  const handleClearSaved = () => {
+    const sure = window.confirm(
+      "Clear All Saved Recipes? \nYou can't undo this action!"
+    );
+    if (sure) clearAllRecipes();
+  };
+
   return !savedCount ? (
     <CartBodyStyled>
       <Title>Saved Recipes</Title>
-      <DetailText weight="700" size="3rem">
+      <DetailText weight="700" size="3rem" color="var(--color-text)">
         No recipes Saved!
       </DetailText>
     </CartBodyStyled>
   ) : (
     <CartBodyStyled>
       <Title>Saved Recipes</Title>
-      <ClearBtn onClick={clearAllRecipes}>Clear All Saved Recipes</ClearBtn>
+      <ClearBtn onClick={handleClearSaved}>Clear All Saved Recipes</ClearBtn>
       <Ingredients>
         {Object.values(allSavedState).map((cur) => (
           <RecipeContainer key={cur.id}>
@@ -62,19 +69,19 @@ const SavedBody = ({
               onClick={() => handleClick(cur.id, cur.image, cur.title)}
             >
               <DetailText weight="700">{cur.title}</DetailText>
-              <DetailText size="1.4rem" color="var(--color-orange)">
+              <DetailText size="1.4rem" color="var(--color-secondary)">
                 {cur.sourceName}
               </DetailText>
             </DetailsContainer>
-            <DetailsContainer>
+            <DetailsContainer tabletpdisplay="none">
               <DetailText weight="700">{cur.score}</DetailText>
-              <DetailText size="1.4rem" color="var(--color-orange)">
+              <DetailText size="1.4rem" color="var(--color-secondary)">
                 Score
               </DetailText>
             </DetailsContainer>
             <ChangeBtn
               fillcolor="red"
-              title="Delete Ingredient"
+              title="Delete Recipe"
               onClick={() => deleteRecipe(cur.id)}
             >
               <Cross />

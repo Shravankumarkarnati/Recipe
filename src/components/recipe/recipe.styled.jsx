@@ -2,17 +2,9 @@ import styled from "styled-components";
 
 const btnStyles = `transition: all 0.3s;
 padding: 1rem;
-background-color: var(--color-text);
 
 &:focus {
   outline: none;
-}
-
-&:hover {
-  background-color:var(--color-secondary);
-  & svg{
-    fill:var(--color-text);
-  }
 }
 
 svg {
@@ -21,16 +13,31 @@ svg {
 }`;
 
 export const BtnStyled = styled.button`
-  ${btnStyles}
+  ${btnStyles};
+  background-color: ${(props) => props.theme.colorText};
+  &:hover {
+    background-color: ${(props) => props.theme.colorSecondary};
+    & svg {
+      fill: var(--color-text);
+    }
+  }
   svg {
-    fill: ${(props) => props.inputcolor || "var(--color-secondary)"};
+    fill: ${(props) => props.inputcolor || props.theme.colorSecondary};
   }
 `;
 
 export const LinkStyled = styled.a`
-  ${btnStyles}
+  ${btnStyles};
+  background-color: ${(props) => props.theme.colorText};
+  &:hover {
+    background-color: ${(props) => props.theme.colorSecondary};
+    & svg {
+      fill: var(--color-text);
+    }
+  }
+
   svg {
-    fill: ${(props) => props.inputcolor || "var(--color-secondary)"};
+    fill: ${(props) => props.inputcolor || props.theme.colorSecondary};
   }
 `;
 
@@ -40,7 +47,7 @@ export const Floater = styled.div`
   align-items: center;
   justify-content: center;
 
-  border: 1px solid var(--color-text);
+  border: 1px solid ${(props) => props.theme.colorText};
   border-radius: 0.5rem;
   overflow: hidden;
 
@@ -48,12 +55,12 @@ export const Floater = styled.div`
   top: 20rem;
   right: 10rem;
 
-  @media only screen and (max-width: 786px) {
+  @media only screen and (max-width: ${(props) => props.theme.screenTabletP}) {
     top: 20rem;
     right: 2rem;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: ${(props) => props.theme.screenMobileL}) {
     top: 40rem;
     right: 2rem;
   }
