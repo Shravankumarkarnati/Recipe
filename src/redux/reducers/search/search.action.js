@@ -6,3 +6,10 @@ export const setSearch = (string) => {
     payload: string,
   };
 };
+
+export const hamburgerClick = (flag) => {
+  return {
+    type: searchTypes.HAMBURGER_CLICKED,
+    payload: flag,
+  };
+};

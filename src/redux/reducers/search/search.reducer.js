@@ -2,6 +2,7 @@ import searchTypes from "./search.types";
 
 const INITIAL_STATE = {
   search: null,
+  hamburger: false,
 };
 
 const searchReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const searchReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         search: action.payload,
+      };
+    case searchTypes.HAMBURGER_CLICKED:
+      return {
+        ...state,
+        hamburger: action.payload,
       };
     default:
       return state;

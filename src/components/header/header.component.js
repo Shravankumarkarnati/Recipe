@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.styles.scss";
 
-import { ReactComponent as Logo } from "../../images/header/logo.svg";
-import { ReactComponent as Cart } from "../../images/header/basket.svg";
-import { ReactComponent as Heart } from "../../images/header/heart-fill.svg";
-import { ReactComponent as Home } from "../../images/header/home.svg";
+import { ReactComponent as Logo } from "../../images/header/healthy-food.svg";
 
 import { createBrowserHistory } from "history";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Header = ({ likesCountState, cartCountState }) => {
+import { hamburgerClick } from "../../redux/reducers/search/search.action";
+import { OptionBox } from "../optionBody/optionBody.styles";
+import SearchContainer from "../search/search.component";
+
+const Header = ({ likesCountState, cartCountState, hamburgerClick }) => {
   const history = createBrowserHistory();
+  const [click, setClick] = useState(false);
 
   const headerElements = [
     {
@@ -26,46 +28,48 @@ const Header = ({ likesCountState, cartCountState }) => {
     },
   ];
 
-  const homeElement = {
-    name: "home",
-    link: "/",
+  const handleClick = () => {
+    hamburgerClick(!click);
+    setClick(!click);
   };
-
-  if (history.location.pathname !== "/") {
-    headerElements.unshift(homeElement);
-  }
 
   return (
     <header className="header">
       <div className="header-logo">
         <Link className="logo-box" to="/">
           <Logo className="logo" />
+          <p className="logoText">Regale</p>
         </Link>
       </div>
 
-      <div className="utils-container">
+      <div className="header-utils">
+        {history.location.pathname !== "/" && !click ? (
+          <SearchContainer display="flex" bg={false} font="2rem" />
+        ) : null}
         {headerElements.map((cur) => (
           <Link
             key={cur.name}
             to={`${cur.link}`}
-            className={`utils-container--${cur.name}`}
+            style={{ textDecoration: "none", margin: "0 2rem" }}
           >
-            <div className={`utils-container--${cur.name}-svg`}>
-              {cur.name === "basket" ? (
-                <Cart className="svg" />
-              ) : cur.name === "saved" ? (
-                <Heart className="svg" />
-              ) : cur.name === "home" ? (
-                <Home className="svg" />
-              ) : null}
+            <OptionBox>
               {cur.count > 0 ? (
-                <span title={cur.count} className="notifCount"></span>
+                <span title={cur.count} className="notif"></span>
               ) : null}
-              <p>{cur.name}</p>
-            </div>
+              <span className="text">{cur.name}</span>
+            </OptionBox>
           </Link>
         ))}
       </div>
+
+      <button
+        className={click ? "header-hamburger clicked" : "header-hamburger"}
+        onClick={handleClick}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
   );
 };
@@ -77,4 +81,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    hamburgerClick: (flag) => dispatch(hamburgerClick(flag)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

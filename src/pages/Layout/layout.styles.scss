@@ -10,11 +10,11 @@
         height: 100%;
         width: 100%;
         display: grid;
-        grid-template-rows: 13vh minmax(79vh, auto) 8vh;
+        grid-template-rows: 10vh minmax(80vh, auto) 10vh;
         grid-template-columns: repeat(2, 1fr);
 
         @media only screen and (max-width: $screen-tabletP) {
-            grid-template-rows: 17vh minmax(74.5vh, auto) 8vh;
+            grid-template-rows: 10vh minmax(80vh, auto) 10vh;
         }
     }
 }

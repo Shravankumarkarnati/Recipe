@@ -1,9 +1,32 @@
 // variables
 
-$color-primary: #000026;
-$color-secondary: #CEA716;
-$color-teritary: #2D3053;
-$color-text: #EEEDFF;
+// $color-primary: #000026;
+// $color-secondary: #CEA716;
+// $color-teritary: #2D3053;
+// $color-text: #EEEDFF;
+
+// $color-primary: #0b3861;
+// $color-secondary: #bdbdbd;
+
+// #845ec2
+
+
+
+// $color-primary: #040404;
+// $color-secondary: #2E4C61;
+// $color-teritary: #13A0B1;
+$color-text: #FAF8FF;
+
+// #0b3861
+// #bdbdbd
+
+
+$color-primary: #040404;
+$color-secondary:#FAF8FF;
+$color-teritary:#13A0B1;
+$color-quaternary:#2E4C61;
+$color-grey:#bdbdbd;
+
 
 $screen-fourk: 1920px;
 $screen-desktop: 1440px;
@@ -12,18 +35,3 @@ $screen-tabletP: 786px;
 $screen-mobileL: 500px;
 $screen-mobileM: 400px;
 $screen-mobileS: 350px;
-
-:export {
-    color-primary: $color-primary;
-    color-secondary: $color-secondary;
-    color-teritary: $color-teritary;
-    color-text: $color-text;
-
-    screen-fourk: $screen-fourk;
-    screen-desktop: $screen-desktop;
-    screen-tabletL: $screen-tabletL;
-    screen-tabletP: $screen-tabletP;
-    screen-mobileL: $screen-mobileL;
-    screen-mobileM: $screen-mobileM;
-    screen-mobileS: $screen-mobileS;
-}

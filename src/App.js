@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import "./App.scss";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import LoadingSpinner from "./components/loadingSpinner/spinner.component";
 import HomePage from "./pages/homepage/home.page";
@@ -24,7 +24,6 @@ export default function App() {
             <Route path="/basket" exact component={CartPage} />
             <Route path="/results" exact component={ResultsPage} />
             <Route path="/recipe" exact component={RecipePage} />
-            {/* <Redirect to="/" /> */}
           </Suspense>
         </Switch>
       </div>

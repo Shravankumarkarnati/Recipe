@@ -19,6 +19,7 @@
             line-height: 15rem;
             color: $color-secondary;
             font-weight: 700;
+            text-transform: lowercase;
 
             @media only screen and (max-width:$screen-tabletP) {
                 font-size: 8rem;
@@ -36,129 +37,6 @@
                     &:nth-child(2) {
                         font-size: 8rem;
                     }
-                }
-            }
-        }
-
-        &--search {
-            width: 60%;
-            box-shadow: 0rem .05rem 1rem $color-text;
-            border-radius: 2rem;
-
-            @media only screen and (max-width:$screen-tabletP) {
-                width: 80%;
-            }
-
-            display: flex;
-            background-color: $color-text;
-            padding: .3rem 2rem;
-            margin: 2rem auto;
-
-            & input {
-                font-size: 3rem;
-                height: 100%;
-                width: 100%;
-                padding: 1.5rem 3rem;
-                border: none;
-                color: $color-teritary;
-                background-color: $color-text;
-                font-weight: 500;
-                letter-spacing: .1rem;
-                word-spacing: .5rem;
-                text-transform: capitalize;
-
-                &::placeholder {
-                    letter-spacing: .1rem;
-                    color: rgba($color-teritary, .8);
-                    text-align: center;
-                    text-transform: capitalize;
-                }
-
-                &:focus {
-                    outline: none;
-                }
-
-                @media only screen and (max-width:$screen-mobileL) {
-                    font-size: 5rem;
-                }
-
-                @media only screen and (max-width:$screen-mobileM) {
-                    font-size: 6rem;
-                }
-
-                @media only screen and (max-width:$screen-mobileS) {
-                    font-size: 8rem;
-                }
-            }
-
-            & svg {
-                width: 4rem;
-                fill: $color-teritary;
-                transition: all .2s;
-
-                @media only screen and (max-width:$screen-mobileL) {
-                    width: 6rem;
-                }
-
-                @media only screen and (max-width:$screen-mobileS) {
-                    width: 8rem;
-                }
-
-                &:hover {
-                    transform: scale(1.1);
-                }
-            }
-        }
-
-        &--button {
-            width: 60%;
-            text-align: end;
-            margin: 3rem auto;
-
-            @media only screen and (max-width:$screen-tabletP) {
-                width: 80%;
-            }
-
-            @media only screen and (max-width:$screen-mobileL) {
-                text-align: center;
-                margin: 6rem auto;
-            }
-
-            &-btn {
-                cursor: pointer;
-                padding: 1rem 2rem;
-                font-size: 2.3rem;
-                border-radius: .5rem;
-                border: none;
-                text-transform: uppercase;
-                font-weight: 400;
-                background-color: $color-secondary;
-                color: $color-text;
-                box-shadow: 0rem .05rem 1rem $color-text;
-                transition: all .4s;
-                opacity: 1;
-
-                &:focus,
-                &:hover {
-                    outline: none;
-                    opacity: .9;
-                    box-shadow: none;
-                }
-
-                @media only screen and (max-width:$screen-tabletP) {
-                    font-size: 3rem;
-                }
-
-                @media only screen and (max-width:$screen-mobileL) {
-                    font-size: 4rem;
-                }
-
-                @media only screen and (max-width:$screen-mobileM) {
-                    font-size: 5rem;
-                }
-
-                @media only screen and (max-width:$screen-mobileS) {
-                    font-size: 6rem;
                 }
             }
         }

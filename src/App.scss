@@ -1,33 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 @import "./variables.scss";
 
-:root {
-    --color-primary: #000026;
-    --color-secondary: #CEA716;
-    --color-teritary: #2D3053;
-    --color-text: #EEEDFF;
+// :root {
+//     --color-primary: #000026;
+//     --color-secondary: #CEA716;
+//     --color-teritary: #2D3053;
+//     --color-text: #EEEDFF;
 
-    --screen-fourk: 1920px;
-    --screen-desktop: 1440px;
-    --screen-tabletL: 1024px;
-    --screen-tabletP: 786px;
-    --screen-mobileL: 500px;
-    --screen-mobileM: 400px;
-    --screen-mobileS: 350px;
+//     --screen-fourk: 1920px;
+//     --screen-desktop: 1440px;
+//     --screen-tabletL: 1024px;
+//     --screen-tabletP: 786px;
+//     --screen-mobileL: 500px;
+//     --screen-mobileM: 400px;
+//     --screen-mobileS: 350px;
 
 
-    --color-white: #fff;
-    --color-black: #040404;
-    --color-grey: #919191;
-    --color-grey-light: #eeeaea;
-    --color-blue: #3C7AFF;
-    --color-green: #00A13F;
-    --color-pink: #FF394E;
-    --color-orange: #E74C3C;
-    --color-orange-light: #FF8066;
-    --color-white-2: #F3F3F3;
-    --color-brown-light: #905564;
-}
+//     --color-white: #fff;
+//     --color-black: #040404;
+//     --color-grey: #919191;
+//     --color-grey-light: #eeeaea;
+//     --color-blue: #3C7AFF;
+//     --color-green: #00A13F;
+//     --color-pink: #FF394E;
+//     --color-orange: #E74C3C;
+//     --color-orange-light: #FF8066;
+//     --color-white-2: #F3F3F3;
+//     --color-brown-light: #905564;
+// }
 
 * {
     margin: 0;
