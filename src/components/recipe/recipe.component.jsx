@@ -8,8 +8,9 @@ import Ingredients from "../ingredients/ingredients.component";
 import Instructions from "../instructions/instructions.component";
 import RecipeStats from "./recipe.stats";
 import { Title, ConnectedOptions } from "./recipe.utils";
+import OptionBody from "../optionBody/optionBody.component";
 
-const Recipe = ({ selectedRecipeState: { id, data } }) => {
+const Recipe = ({ selectedRecipeState: { id, data }, hamburger }) => {
   const {
     servings,
     sourceName,
@@ -30,7 +31,9 @@ const Recipe = ({ selectedRecipeState: { id, data } }) => {
     score: parseInt((spoonacularScore * 10) / 10),
   };
 
-  return (
+  return hamburger ? (
+    <OptionBody />
+  ) : (
     <div className="recipe">
       <div className="recipe--container">
         <ConnectedOptions
@@ -67,6 +70,7 @@ const Recipe = ({ selectedRecipeState: { id, data } }) => {
 const mapStateToProps = (state) => {
   return {
     selectedRecipeState: state.results.selectedRecipe,
+    hamburger: state.search.hamburger,
   };
 };
 
