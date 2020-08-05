@@ -8,16 +8,16 @@
     display: grid;
     grid-template-rows: auto auto;
 
-    background: $color-primary;
+    background: $color-secondary;
 
     &-main {
         grid-row: 1/2;
         padding: 3rem 10vw;
 
         &--heading {
-            font-size: 10rem;
+            font-size: 8rem;
             line-height: 15rem;
-            color: $color-secondary;
+            color: $color-primary;
             font-weight: 700;
             text-transform: lowercase;
 
@@ -28,16 +28,8 @@
             @media only screen and (max-width:$screen-mobileL) {
 
                 margin-bottom: 10rem;
-
-                & span {
-                    display: block;
-                    line-height: 1;
-                    font-size: 10rem;
-
-                    &:nth-child(2) {
-                        font-size: 8rem;
-                    }
-                }
+                font-size: 10rem;
+                line-height: 1;
             }
         }
     }

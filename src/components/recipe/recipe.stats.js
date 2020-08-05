@@ -82,8 +82,8 @@ const RecipeStats = ({ selectedRecipeState: { data } }) => {
         {statsLeftElements.map((cur) => {
           return (
             <pre className="text" key={cur.name}>
-              <span className="bold">{cur.name}</span>
-              <pre> : {cur.value} </pre>
+              <span className="bold">{cur.name} :</span>
+              <pre> {cur.value} </pre>
               <span>{cur.text}</span>
             </pre>
           );

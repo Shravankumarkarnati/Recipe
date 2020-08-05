@@ -10,34 +10,34 @@ padding: 1rem;
 svg {
   width: 2.6rem;
   height: 2.6rem;
-}`;
+}
+`;
 
 export const BtnStyled = styled.button`
   ${btnStyles};
-  background-color: ${(props) => props.theme.colorText};
+  background-color: ${(props) => props.theme.colorSecondary};
   &:hover {
-    background-color: ${(props) => props.theme.colorSecondary};
+    background-color: ${(props) => props.theme.colorPrimary};
     & svg {
-      fill: var(--color-text);
+      fill: ${(props) => props.theme.colorSecondary};
     }
   }
   svg {
-    fill: ${(props) => props.inputcolor || props.theme.colorSecondary};
+    fill: ${(props) => props.inputcolor || props.theme.colorTeritary};
   }
 `;
 
 export const LinkStyled = styled.a`
   ${btnStyles};
-  background-color: ${(props) => props.theme.colorText};
+  background-color: ${(props) => props.theme.colorSecondary};
   &:hover {
-    background-color: ${(props) => props.theme.colorSecondary};
+    background-color: ${(props) => props.theme.colorPrimary};
     & svg {
-      fill: var(--color-text);
+      fill: ${(props) => props.theme.colorSecondary};
     }
   }
-
   svg {
-    fill: ${(props) => props.inputcolor || props.theme.colorSecondary};
+    fill: ${(props) => props.inputcolor || props.theme.colorTeritary};
   }
 `;
 
@@ -47,7 +47,7 @@ export const Floater = styled.div`
   align-items: center;
   justify-content: center;
 
-  border: 1px solid ${(props) => props.theme.colorText};
+  border: 1px solid ${(props) => props.theme.colorPrimary};
   border-radius: 0.5rem;
   overflow: hidden;
 

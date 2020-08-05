@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const SearchContainerStyled = styled.div`
   width: 60%;
-  box-shadow: 0rem 0.05rem 1rem ${(props) => props.theme.colorPrimary};
+
+  @media only screen and (max-width: 500px) {
+    width: ${(props) => props.smallwidth || null};
+  }
   border-radius: 1rem;
   padding: 0.3rem 2rem;
 
@@ -10,12 +13,22 @@ export const SearchContainerStyled = styled.div`
   background-color: ${(props) =>
     props.bg ? props.theme.colorSecondary : props.theme.colorGrey};
   margin: 2rem auto;
-  box-shadow: 0rem 0.05rem 0.5rem ${(props) => props.theme.colorSecondary};
+  border: 0.2rem solid ${(props) => props.theme.colorSecondary};
+
+  transition: border 0.3s ease-in-out;
+
+  &:focus-within {
+    border: 0.2rem solid ${(props) => props.theme.colorPrimary};
+  }
 
   & input {
     height: 100%;
     width: 100%;
     font-size: ${(props) => props.font || "3rem"};
+
+    @media only screen and (max-width: 500px) {
+      font-size: ${(props) => props.smallInputFont || "3rem"};
+    }
     padding: 1rem 3rem;
     border: none;
     color: ${(props) => props.theme.colorPrimary};
@@ -52,6 +65,9 @@ export const SearchContainerStyled = styled.div`
 
 export const BtnMain = styled.button`
   font-size: ${(props) => props.font || "2rem"};
+  @media only screen and (max-width: 500px) {
+    font-size: ${(props) => props.smallbtnfont || "2rem"};
+  }
   font-weight: 500;
   text-transform: lowercase;
   padding: 0.5rem 1.5rem;

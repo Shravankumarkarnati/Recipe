@@ -18,7 +18,13 @@ const Body = ({ hamburger }) => {
           <span>a </span>
           <span>Recipe</span>
         </p>
-        <SearchContainer bg={true} font="3rem" />
+        <SearchContainer
+          bg={false}
+          font="3rem"
+          smallInputFont="7rem"
+          smallwidth="90%"
+          smallbtnfont="6rem"
+        />
       </div>
     </div>
   );

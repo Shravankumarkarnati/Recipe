@@ -16,6 +16,9 @@ const SearchContainer = ({
   bg,
   display,
   font,
+  smallwidth,
+  smallbtnfont,
+  smallInputFont,
 }) => {
   const [search, setSearch] = useState("");
 
@@ -32,11 +35,21 @@ const SearchContainer = ({
 
   return (
     <FormStyled onSubmit={onSearch} display={display}>
-      <SearchContainerStyled bg={bg} font={font}>
+      <SearchContainerStyled
+        bg={bg}
+        font={font}
+        smallwidth={smallwidth}
+        smallInputFont={smallInputFont}
+      >
         <SearchSVG />
         <input type="text" value={search} onChange={onChange} />
       </SearchContainerStyled>
-      <BtnMain type="submit" onClick={onSearch} font={font}>
+      <BtnMain
+        type="submit"
+        onClick={onSearch}
+        font={font}
+        smallbtnfont={smallbtnfont}
+      >
         Search
       </BtnMain>
     </FormStyled>

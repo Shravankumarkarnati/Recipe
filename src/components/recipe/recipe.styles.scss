@@ -5,8 +5,9 @@
     grid-column: 1/-1;
     height: 100%;
     width: 100%;
-    background-color: $color-primary;
-    color: $color-text;
+    background-color: $color-secondary;
+    color: $color-primary;
+    border-top: 1px solid $color-primary;
 
     &--container {
         position: relative;
@@ -30,6 +31,8 @@
         height: 30rem;
         border-radius: .5rem;
         overflow: hidden;
+        border: 5px solid $color-quaternary;
+        box-shadow: 0rem .2rem 1rem $color-primary;
 
         & img {
             height: 100%;
@@ -47,17 +50,17 @@
         &-title {
             font-size: 6rem;
             font-weight: 800;
-            color: $color-secondary;
+            color: $color-teritary;
         }
 
         &-author {
             margin-top: 2rem;
             font-weight: 600;
             font-size: 1.3rem;
-            color: $color-secondary;
+            color: $color-primary;
 
             & span {
-                color: $color-text;
+                color: $color-quaternary;
                 margin-left: 1rem;
                 font-size: 2rem;
             }
@@ -78,12 +81,21 @@
         padding: 3rem;
         font-size: 2.4rem;
 
-        & a,
-        & b {
+        & a {
+            cursor: pointer;
             text-transform: none;
             text-decoration: none;
-            color: $color-secondary;
+            color: $color-teritary;
             font-weight: normal;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        & b {
+            font-weight: 500;
+            text-decoration: underline $color-quaternary;
         }
     }
 
@@ -99,15 +111,17 @@
             font-size: 2.4rem;
 
             & .text {
-                font-weight: 400;
+                font-weight: 600;
                 display: flex;
                 align-items: flex-start;
+                color: $color-teritary;
             }
 
             & .bold {
                 margin-left: 3rem;
-                font-weight: bold;
+                font-weight: 500;
                 display: flex;
+                color: $color-primary;
             }
         }
 
@@ -118,8 +132,8 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
 
-            background-color: $color-text;
-            border: 2px solid $color-secondary;
+            background-color: $color-secondary;
+            border: 2px solid $color-primary;
             border-radius: .5rem;
 
             @media only screen and (max-width:$screen-tabletP) {
@@ -151,8 +165,8 @@
     .tooltiptext {
         visibility: hidden;
         width: 12rem;
-        background-color: $color-text;
-        color: $color-teritary;
+        background-color: $color-secondary;
+        color: $color-primary;
         font-size: 1.5rem;
         text-align: center;
         border-radius: 6px;

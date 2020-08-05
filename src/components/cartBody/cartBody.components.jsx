@@ -3,6 +3,7 @@ import React from "react";
 import { ReactComponent as Plus } from "../../images/cartPage/plus.svg";
 import { ReactComponent as Minus } from "../../images/cartPage/minus.svg";
 import { ReactComponent as Cross } from "../../images/cartPage/cross-circle.svg";
+import OptionBody from "../optionBody/optionBody.component";
 
 import {
   adjustIng,
@@ -29,6 +30,7 @@ const CartBody = ({
   clearCart,
   deleteIngredient,
   cartCount,
+  hamburger,
 }) => {
   const handleAmountChangeBtn = (e, id, old_amount) => {
     const sign = e.target.closest("button").dataset.sign === "plus" ? +1 : -1;
@@ -51,7 +53,9 @@ const CartBody = ({
     }
   };
 
-  return !cartCount ? (
+  return hamburger ? (
+    <OptionBody />
+  ) : !cartCount ? (
     <CartBodyStyled>
       <Title>ingredients</Title>
       <IngredientText
@@ -112,6 +116,7 @@ const mapStateToProps = (state) => {
   return {
     ingredients: state.cart.allIngredients,
     cartCount: state.cart.cartCount,
+    hamburger: state.search.hamburger,
   };
 };
 

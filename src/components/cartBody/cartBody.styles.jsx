@@ -7,7 +7,8 @@ export const CartBodyStyled = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background: var(--color-primary);
+  background: ${(props) => props.theme.colorSecondary};
+  border-top: 2px solid ${(props) => props.theme.colorPrimary};
 `;
 
 export const Title = styled.h1`
@@ -15,7 +16,7 @@ export const Title = styled.h1`
   width: 100%;
   text-align: center;
   margin: 2rem 0;
-  color: var(--color-secondary);
+  color: ${(props) => props.theme.colorPrimary};
   text-transform: uppercase;
 `;
 
@@ -24,10 +25,10 @@ export const ClearBtn = styled.button`
   align-self: flex-end;
   margin-right: 5rem;
   text-align: center;
-  color: var(--color-text);
+  color: ${(props) => props.theme.colorSecondary};
   padding: 1rem;
   font-size: 1.6rem;
-  background-color: var(--color-secondary);
+  background-color: ${(props) => props.theme.colorTeritary};
   transition: all 0.2s;
   text-transform: capitalize;
   border-radius: 0.5rem;
@@ -54,18 +55,15 @@ export const IngredientContainer = styled.div`
   padding: 1rem;
   width: 100%;
   margin: 0.1rem;
-  background: var(--color-teritary);
+  background: ${(props) => props.theme.colorSecondary};
   border-radius: 0.8rem;
+  border: 3px solid ${(props) => props.theme.colorQuternary};
 
   display: grid;
-  grid-template-columns: 12rem 8rem 25rem 1fr 4rem;
+  grid-template-columns: 20rem 10rem 1fr 5rem;
+  grid-template-rows: 1fr min-content;
+  grid-row-gap: 1rem;
   align-items: center;
-
-  @media only screen and (max-width: ${(props) => props.theme.screenTabletL}) {
-    grid-template-columns: 20rem 10rem 1fr 5rem;
-    grid-template-rows: 1fr min-content;
-    grid-row-gap: 1.5rem;
-  }
 `;
 
 export const ChangeController = styled.div`
@@ -78,10 +76,11 @@ export const InputContainer = styled.input`
   text-align: center;
   border: none;
   font-size: 1.5rem;
-  color: var(--color-text);
-  background: var(--color-teritary);
+  color: ${(props) => props.theme.colorSecondary};
+  background: ${(props) => props.theme.colorTeritary};
   padding: 0.5rem 0;
   margin: 0;
+  border-radius: 0.5rem;
 `;
 
 export const ChangeBtn = styled.button`
@@ -89,8 +88,8 @@ export const ChangeBtn = styled.button`
   width: 3rem;
   height: 3rem;
   text-align: center;
-  color: var(--color-primary);
-  background-color: var(--color-teritary);
+  background-color: ${(props) =>
+    props.bgblue ? props.theme.colorQuaternary : props.theme.colorSecondary};
   padding: 0.5rem;
   font-size: 2rem;
   transition: all 0.2s;
@@ -109,7 +108,7 @@ export const ChangeBtn = styled.button`
     transform: translate(-50%, -50%);
     width: 2rem;
     height: 2rem;
-    fill: ${(props) => props.fillcolor || "var(--color-secondary)"};
+    fill: ${(props) => props.fillcolor || props.theme.colorPrimary};
   }
 `;
 
@@ -120,8 +119,7 @@ export const IngredientText = styled.p`
   text-transform: capitalize;
   text-align: center;
 
-  @media only screen and (max-width: ${(props) => props.theme.screenTabletL}) {
-    grid-row: ${(props) => (props.gridtabletfix ? "2/-1" : null)};
-    grid-column: ${(props) => (props.gridtabletfix ? "1/-1" : null)};
-  }
+  grid-row: ${(props) => (props.gridtabletfix ? "2/-1" : null)};
+  grid-column: ${(props) => (props.gridtabletfix ? "1/-1" : null)};
+  border-top: ${(props) => (props.gridtabletfix ? `1px solid #13A0B1` : null)};
 `;

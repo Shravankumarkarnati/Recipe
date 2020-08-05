@@ -3,7 +3,7 @@
 .spinner-container {
     grid-row: 2/3;
     grid-column: 1/-1;
-    background: $color-primary;
+    background: $color-secondary;
     width: 100%;
     height: 100vh;
     position: relative;
@@ -31,13 +31,13 @@
     transform: translate(-50%, -50%);
     width: 8rem;
     height: 8rem;
-    fill: $color-secondary;
+    fill: $color-teritary;
     animation: revolveSvg 2s infinite linear;
 }
 
 .circle {
     position: absolute;
-    fill: $color-text;
+    fill: $color-primary;
     top: 0;
     width: 2rem;
     height: 2rem;

@@ -8,14 +8,14 @@
         padding: 1rem;
         border-radius: 1rem;
         margin: 2rem;
-        border-bottom: 1px solid $color-secondary;
+        border-bottom: 1px solid $color-primary;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         & p {
             font-size: 3rem;
-            color: $color-secondary;
+            color: $color-primary;
         }
 
         &--controller {
@@ -25,13 +25,13 @@
 
             &>p {
                 font-size: 2rem;
-                color: $color-text;
+                color: $color-teritary;
             }
 
             & svg {
                 height: 2rem;
                 width: 2rem;
-                fill: $color-secondary;
+                fill: $color-quaternary;
                 margin: 0 1rem;
             }
         }
@@ -74,6 +74,6 @@
     font-size: 4rem;
     font-weight: 700;
     margin: 4rem 0;
-    color: $color-secondary;
+    color: $color-primary;
     text-decoration: underline $color-teritary;
 }

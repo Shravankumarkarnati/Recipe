@@ -8,6 +8,7 @@ import {
   deleteAllLikes,
 } from "../../redux/reducers/likes/likes.actions";
 import { withRouter } from "react-router-dom";
+import OptionBody from "../optionBody/optionBody.component";
 
 import {
   CartBodyStyled,
@@ -32,6 +33,7 @@ const SavedBody = ({
   setSearchDispatch,
   deleteRecipe,
   clearAllRecipes,
+  hamburger,
 }) => {
   const handleClick = (id, image, title) => {
     setSearchDispatch(title);
@@ -46,7 +48,9 @@ const SavedBody = ({
     if (sure) clearAllRecipes();
   };
 
-  return !savedCount ? (
+  return hamburger ? (
+    <OptionBody />
+  ) : !savedCount ? (
     <CartBodyStyled>
       <Title>Saved Recipes</Title>
       <DetailText weight="700" size="3rem" color="var(--color-text)">
@@ -97,6 +101,7 @@ const mapStateToProps = (state) => {
   return {
     allSavedState: state.likes.likes,
     savedCount: state.likes.countLikes,
+    hamburger: state.search.hamburger,
   };
 };
 
@@ -113,11 +118,3 @@ const mapDispatchToProps = (dispatch) => {
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(SavedBody)
 );
-
-// allSavedState[92] = {
-//   id: 248459,
-//   image: "https://spoonacular.com/recipeImages/248459-556x370.jpg",
-//   score: 460,
-//   sourceName: "Closet Cooking",
-//   title: "Pizza Dip",
-// };
