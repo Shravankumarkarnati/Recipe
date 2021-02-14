@@ -1,17 +1,15 @@
 import React, { Suspense, lazy } from "react";
-import "./App.scss";
 import { Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import LoadingSpinner from "./components/loadingSpinner/spinner.component";
 import HomePage from "./pages/homepage/home.page";
+import { theme } from "./theme";
+import "./App.scss";
 
 const SavedPage = lazy(() => import("./pages/saved/saved.pages"));
 const CartPage = lazy(() => import("./pages/cart/cart.page"));
 const ResultsPage = lazy(() => import("./pages/results/results.components"));
 const RecipePage = lazy(() => import("./pages/Recipe/recipe.page"));
-
-// eslint-disable-next-line import/no-webpack-loader-syntax
-const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./variables.scss');
 
 export default function App() {
   return (

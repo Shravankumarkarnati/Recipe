@@ -1,82 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 @import "./variables.scss";
 
-// :root {
-//     --color-primary: #000026;
-//     --color-secondary: #CEA716;
-//     --color-teritary: #2D3053;
-//     --color-text: #EEEDFF;
-
-//     --screen-fourk: 1920px;
-//     --screen-desktop: 1440px;
-//     --screen-tabletL: 1024px;
-//     --screen-tabletP: 786px;
-//     --screen-mobileL: 500px;
-//     --screen-mobileM: 400px;
-//     --screen-mobileS: 350px;
-
-
-//     --color-white: #fff;
-//     --color-black: #040404;
-//     --color-grey: #919191;
-//     --color-grey-light: #eeeaea;
-//     --color-blue: #3C7AFF;
-//     --color-green: #00A13F;
-//     --color-pink: #FF394E;
-//     --color-orange: #E74C3C;
-//     --color-orange-light: #FF8066;
-//     --color-white-2: #F3F3F3;
-//     --color-brown-light: #905564;
-// }
-
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-    font-family: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
 }
 
 html {
+  font-size: 62.5%;
+  font-family: "Poppins", sans-serif;
+
+  @media only screen and (min-width: $screen-fourk) {
+    font-size: 120%;
+  }
+
+  @media only screen and (max-width: $screen-desktop) {
     font-size: 62.5%;
-    font-family: 'Poppins', sans-serif;
+  }
 
-    @media only screen and (min-width: $screen-fourk) {
-        font-size: 120%;
-    }
+  @media only screen and (max-width: $screen-tabletL) {
+    font-size: 60%;
+  }
 
-    @media only screen and (max-width: $screen-desktop) {
-        font-size: 62.5%;
-    }
+  @media only screen and (max-width: $screen-tabletP) {
+    font-size: 50%;
+  }
 
-    @media only screen and (max-width: $screen-tabletL) {
-        font-size: 60%;
-    }
+  @media only screen and (max-width: $screen-mobileL) {
+    font-size: 30%;
+  }
 
-    @media only screen and (max-width: $screen-tabletP) {
-        font-size: 50%;
-    }
+  @media only screen and (max-width: $screen-mobileM) {
+    font-size: 25%;
+  }
 
-    @media only screen and (max-width: $screen-mobileL) {
-        font-size: 30%;
-    }
-
-    @media only screen and (max-width: $screen-mobileM) {
-        font-size: 25%;
-    }
-
-    @media only screen and (max-width: $screen-mobileS) {
-        font-size: 20%;
-    }
+  @media only screen and (max-width: $screen-mobileS) {
+    font-size: 20%;
+  }
 }
-
-
-// #FE0000 
-// #0112fe
-// #ffdb01
-// #000f1d
-
-// #000026
-// #2D3053
-// #EEEDFF
-// #CEA716
