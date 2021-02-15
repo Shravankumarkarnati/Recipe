@@ -14,7 +14,7 @@ const RecipePage = lazy(() => import("./pages/Recipe/recipe.page"));
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div>
+      <div data-testid="appComponent">
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Suspense fallback={<LoadingSpinner />}>

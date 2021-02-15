@@ -11,7 +11,7 @@ const Body = ({ hamburger }) => {
   return hamburger ? (
     <OptionBody />
   ) : (
-    <div className="body">
+    <div className="body" data-testid="bodyComponent">
       <div className="body-main">
         <p className="body-main--heading">
           <span>Find </span>

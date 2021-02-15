@@ -28,9 +28,11 @@ const SearchContainer = ({
 
   const onSearch = async (e) => {
     e.preventDefault();
-    searchStringDispatch(search);
-    onSearchAsync(search);
-    history.push("/results");
+    if (search.length > 0) {
+      searchStringDispatch(search);
+      onSearchAsync(search);
+      history.push("/results");
+    }
   };
 
   return (
@@ -42,13 +44,20 @@ const SearchContainer = ({
         smallInputFont={smallInputFont}
       >
         <SearchSVG />
-        <input type="text" value={search} onChange={onChange} />
+
+        <input
+          type="text"
+          value={search}
+          onChange={onChange}
+          data-testid="searchContainer"
+        />
       </SearchContainerStyled>
       <BtnMain
         type="submit"
         onClick={onSearch}
         font={font}
         smallbtnfont={smallbtnfont}
+        data-testid="btnMain"
       >
         Search
       </BtnMain>
